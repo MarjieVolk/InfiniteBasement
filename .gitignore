@@ -63,3 +63,8 @@ ProjectSettings/Packages/com.unity.connect.share/Settings.json
 
 # [Levi added this] Not sure what this file is for, but we don't seem to need it for running the WebGL build.
 connectwebgl.zip
+
+# [Steven added this] Ignore the ridiculously large asset packages. You
+# can torrent these instead, see discord.
+Assets/Modular Houses*
+Assets/House_Furniture_Pack*

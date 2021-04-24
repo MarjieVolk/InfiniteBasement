@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/LeviScene.unity
     guid: 06efbbbcff6aa2245b687cff0d7238ca
   m_configObjects: {}

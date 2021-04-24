@@ -938,8 +938,8 @@ MonoBehaviour:
   speedForward: 3
   speedBackward: 1.5
   speedSideways: 1.5
-  mouseSensitivityX: 2
-  mouseSensitivityY: 2
+  mouseSensitivityX: 0.3
+  mouseSensitivityY: 0.3
   mouseSmoothing: 2
   maxRotationY: 60
   gravityMultiplier: 1

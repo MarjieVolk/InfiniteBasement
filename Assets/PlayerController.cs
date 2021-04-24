@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour
     public float speedBackward = 1.5f;
     public float speedSideways = 1.5f;
 
-    public float mouseSensitivityX = 2.0f;
-    public float mouseSensitivityY = 2.0f;
+    public float mouseSensitivityX = 0.3f;
+    public float mouseSensitivityY = 0.3f;
 
     public float mouseSmoothing = 2.0f;
 

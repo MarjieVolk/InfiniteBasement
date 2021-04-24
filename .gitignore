@@ -58,3 +58,8 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# [Levi added this] Seems to have some dev-machine-specific paths.
+ProjectSettings/Packages/com.unity.connect.share/Settings.json
+
+# [Levi added this] Not sure what this file is for, but we don't seem to need it for running the WebGL build.
+connectwebgl.zip

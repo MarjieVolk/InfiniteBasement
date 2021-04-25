@@ -19,7 +19,6 @@ public class InteractTrigger : DefaultTrigger
             (Input.GetKeyDown(KeyCode.E)
             || Input.GetMouseButtonDown(0)
             || Input.GetMouseButtonDown(1)
-            || Input.GetKeyDown(KeyCode.Space)
             || Input.GetKeyDown(KeyCode.KeypadEnter)
             || Input.GetKeyDown(KeyCode.Return)))
         {

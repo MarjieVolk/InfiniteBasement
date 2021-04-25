@@ -14,7 +14,14 @@ public class InteractTrigger : DefaultTrigger
 
     void Update()
     {
-        if (isTargeted && Input.GetKeyDown("e"))
+        // Any button!!!
+        if (isTargeted && 
+            (Input.GetKeyDown(KeyCode.E)
+            || Input.GetMouseButtonDown(0)
+            || Input.GetMouseButtonDown(1)
+            || Input.GetKeyDown(KeyCode.Space)
+            || Input.GetKeyDown(KeyCode.KeypadEnter)
+            || Input.GetKeyDown(KeyCode.Return)))
         {
             OnTrigger();
         }

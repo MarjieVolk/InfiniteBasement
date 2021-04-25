@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
     public GameObject fpCamera;
     public float speedForward = 1.5f;
     public float speedBackward = 0.75f;
@@ -45,6 +47,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        PlayerController.instance = this;
+
         stopwatch = new Stopwatch();
         stopwatch.Start();
 
@@ -170,5 +174,29 @@ public class PlayerController : MonoBehaviour
         //{
         //    lastStepTimeMs = float.MinValue;
         //}
+    }
+
+
+    // TODO: Call the following from triggers?
+
+
+    public void MarkRoomAsCompleted()
+    {
+        RoomArranger.instance.OnRoomCompleted();
+    }
+
+    public void OnDoorOpened()
+    {
+        RoomArranger.instance.OnDoorOpened();
+    }
+
+    public void OnDoorClosed()
+    {
+        RoomArranger.instance.OnDoorClosed();
+    }
+
+    public void OnRoomEntered()
+    {
+        RoomArranger.instance.OnRoomEntered();
     }
 }

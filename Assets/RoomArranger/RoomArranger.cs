@@ -8,6 +8,7 @@ public class RoomArranger : MonoBehaviour
 
     public GameObject roomPrefab;
     public Vector3 displacementBetweenDoors;
+    public Vector3 prologPosition;
 
     private GameObject previousRoomObject;
     private GameObject currentRoomObject;

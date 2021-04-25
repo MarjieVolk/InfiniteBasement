@@ -40,6 +40,14 @@ public class Room : MonoBehaviour
     {
         this.iteration = iteration;
 
+        // TODO: Remove this once we're done using the placeholder content.
+        PlaceholderArrange();
+        return;
+
+
+        HidePrologContent();
+        HideEpilogContent();
+
         switch (iteration)
         {
             case RoomIteration.Prolog:
@@ -104,5 +112,97 @@ public class Room : MonoBehaviour
     {
         isCompleted = true;
         // TODO: Show/hide/move/adjust whatever items/state is needed for the current room.
+    }
+
+    void HidePrologContent()
+    {
+        // TODO:
+    }
+
+    void HideEpilogContent()
+    {
+        // TODO:
+    }
+
+
+    // --------------------------------------------------------------------- //
+    // TODO: Remove all the stuff below this line, which is temporarily being used for placeholder content.
+
+    private Vector3 placeholderDisplacementBetweeDoors = new Vector3(0.375f, -3.52f, 0);
+
+    private void PlaceholderArrange()
+    {
+        PlaceholderHidePrologContent();
+        PlaceholderHideEpilogContent();
+
+        switch (iteration)
+        {
+            case RoomIteration.Prolog:
+                PlaceholderArrangeForProlog();
+                break;
+            case RoomIteration.One:
+                PlaceholderArrangeForRoomOne();
+                break;
+            case RoomIteration.Two:
+                PlaceholderArrangeForRoomTwo();
+                break;
+            case RoomIteration.Three:
+                PlaceholderArrangeForRoomThree();
+                break;
+            case RoomIteration.Four:
+                PlaceholderArrangeForRoomFour();
+                break;
+            case RoomIteration.Five:
+                PlaceholderArrangeForRoomFive();
+                break;
+            case RoomIteration.Epilog:
+                PlaceholderArrangeForEpilog();
+                break;
+            default:
+                Debug.LogError("Unrecognized RoomIteration: " + iteration);
+                break;
+        }
+    }
+
+    void PlaceholderArrangeForRoomOne()
+    {
+    }
+
+    void PlaceholderArrangeForRoomTwo()
+    {
+    }
+
+    void PlaceholderArrangeForRoomThree()
+    {
+    }
+
+    void PlaceholderArrangeForRoomFour()
+    {
+    }
+
+    void PlaceholderArrangeForRoomFive()
+    {
+    }
+
+    void PlaceholderArrangeForProlog()
+    {
+        isCompleted = true;
+        GameObject.Find("Prolog").SetActive(true);
+    }
+
+    void PlaceholderArrangeForEpilog()
+    {
+        isCompleted = true;
+        GameObject.Find("Epilog").SetActive(true);
+    }
+
+    void PlaceholderHidePrologContent()
+    {
+        GameObject.Find("Prolog").SetActive(false);
+    }
+
+    void PlaceholderHideEpilogContent()
+    {
+        GameObject.Find("Epilog").SetActive(false);
     }
 }

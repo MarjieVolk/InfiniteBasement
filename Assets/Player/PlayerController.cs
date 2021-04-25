@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    #if UNITY_WEBGL
+    const float MOUSE_SENSITIVITY_MULTIPLIER = 0.5f;
+    #else
+    const float MOUSE_SENSITIVITY_MULTIPLIER = 1;
+    #endif
+
     public static PlayerController instance;
 
     public GameObject fpCamera;
@@ -12,8 +18,8 @@ public class PlayerController : MonoBehaviour
     public float speedBackward = 0.75f;
     public float speedSideways = 0.75f;
 
-    public float mouseSensitivityX = 0.3f;
-    public float mouseSensitivityY = 0.3f;
+    public float mouseSensitivityX = 1.0f;
+    public float mouseSensitivityY = 1.0f;
 
     public float mouseSmoothing = 2.0f;
 
@@ -115,7 +121,7 @@ public class PlayerController : MonoBehaviour
 
     void Rotate()
     {
-        Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+        Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * MOUSE_SENSITIVITY_MULTIPLIER;
         mouseDelta = Vector2.Scale(mouseDelta, new Vector2(mouseSensitivityX * mouseSmoothing, mouseSensitivityY * mouseSmoothing));
 
         smoothV.x = Mathf.Lerp(smoothV.x, mouseDelta.x, 1f / mouseSmoothing);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteractTrigger : DefaultTrigger
 {
-    void OnInteract() {
+    public void OnInteract() {
         OnTrigger();
     }
 

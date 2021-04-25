@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class InteractTrigger : DefaultTrigger
 {
-    public void OnInteract() {
-        OnTrigger();
-    }
+    private bool isTargeted = false;
 
     void Start() {
         
     }
 
-    void Update() {
-        // Temp logic to trigger, until we have a char I can add interact to.
-        if (Input.GetKeyDown("space"))
+    void Update()
+    {
+        if (isTargeted && Input.GetKeyDown("e"))
         {
             OnTrigger();
         }
+
+        // TODO show/hide interact prompt
+    }
+
+    public void SetIsTargeted(bool isTargeted)
+    {
+        this.isTargeted = isTargeted;
     }
 }

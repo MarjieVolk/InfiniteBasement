@@ -4,20 +4,7 @@ using UnityEngine;
 
 public class Interactor : MonoBehaviour
 {
-    void OnTriggerStay(Collider collision) {
-        if (Input.GetKeyDown("e")) {
-            Component comp = collision.transform.GetComponent("InteractTrigger");
-            if (!comp) {
-                return;
-            }
-            InteractTrigger trigger = comp as InteractTrigger;
-            if (!trigger) {
-                return;
-            }
-
-            trigger.OnInteract();
-        }
-    }
+    private InteractTrigger currentTarget;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +15,46 @@ public class Interactor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+    }
+
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision == null)
+        {
+            return;
+        }
+
+        InteractTrigger nextTarget = collision.transform.GetComponent<InteractTrigger>();
+
+        if (nextTarget == null)
+        {
+            return;
+        }
+
+        if (nextTarget != currentTarget)
+        {
+            if (currentTarget != null)
+            {
+                currentTarget.SetIsTargeted(false);
+            }
+
+            currentTarget = nextTarget;
+
+            if (nextTarget != null)
+            {
+                nextTarget.SetIsTargeted(true);
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider collision)
+    {
+        InteractTrigger pastTarget = collision.transform.GetComponent<InteractTrigger>();
+
+        if (currentTarget == pastTarget && currentTarget != null)
+        {
+            currentTarget.SetIsTargeted(false);
+            currentTarget = null;
+        }
     }
 }

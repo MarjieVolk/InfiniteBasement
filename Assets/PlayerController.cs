@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Stopwatch = System.Diagnostics.Stopwatch;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public GameObject fpCamera;
-    public float speedForward = 3.0f;
-    public float speedBackward = 1.5f;
-    public float speedSideways = 1.5f;
+    public float speedForward = 1.5f;
+    public float speedBackward = 0.75f;
+    public float speedSideways = 0.75f;
 
     public float mouseSensitivityX = 0.3f;
     public float mouseSensitivityY = 0.3f;
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 smoothV;
 
     private CharacterController characterController;
+    private AudioSource audioSource;
 
     public float gravityMultiplier = 1;
     public bool canJump = true;
@@ -28,11 +30,30 @@ public class PlayerController : MonoBehaviour
 
     private float velocityY = 0;
 
+    // Seconds per step.
+    public float footstepPeriodMultiplier = 0.5f;
+    public AudioClip[] footstepsFloor;
+    public AudioClip[] footstepsStairs;
+    private float lastStepTimeMs = float.MinValue;
+    private Stopwatch stopwatch;
+    private int footstepsCount = 0;
+
+    private bool isPressingForward = false;
+    private bool isPressingBackward = false;
+    private bool isPressingSideways = false;
+    private bool isWalking = false;
+
     void Start()
     {
+        stopwatch = new Stopwatch();
+        stopwatch.Start();
+
+        characterController = GetComponent<CharacterController>();
+        audioSource = GetComponent<AudioSource>();
+        
         // Hide the cursor.
         Cursor.lockState = CursorLockMode.Locked;
-        characterController = GetComponent<CharacterController>();
+        // Hide the capsule that's rendered for dev-purposes in the editor.
         GameObject.Find("DevIndicator").SetActive(false);
     }
 
@@ -40,6 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         Translate();
         Rotate();
+        HandleFootsteps();
 
         if (Input.GetKeyDown("escape"))
         {
@@ -80,9 +102,14 @@ public class PlayerController : MonoBehaviour
     Vector3 GetHorizontalDisplacementFromInput()
     {
         float inputZ = Input.GetAxis("Vertical");
+        float inputX = Input.GetAxis("Horizontal");
+        isPressingForward = inputZ > 0;
+        isPressingBackward = inputZ < 0;
+        isPressingSideways = inputX != 0;
+        isWalking = characterController.isGrounded && (isPressingForward || isPressingBackward || isPressingSideways);
         float speedZ = inputZ > 0 ? speedForward : speedBackward;
         float displacementZ = inputZ * speedZ * Time.deltaTime;
-        float displacementX = Input.GetAxis("Horizontal") * speedSideways * Time.deltaTime;
+        float displacementX = inputX * speedSideways * Time.deltaTime;
         Vector3 displacement = new Vector3(displacementX, 0, displacementZ);
         return transform.TransformDirection(displacement);
     }
@@ -100,5 +127,48 @@ public class PlayerController : MonoBehaviour
 
         fpCamera.transform.localRotation = Quaternion.AngleAxis(-rotationAngles.y, Vector3.right);
         transform.localRotation = Quaternion.AngleAxis(rotationAngles.x, transform.up);
+    }
+
+    void HandleFootsteps()
+    {
+        if (isWalking)
+        {
+            float walkingSpeed = isPressingForward ? speedForward : (isPressingBackward ? speedBackward : speedSideways);
+            float footstepInterval = footstepPeriodMultiplier / walkingSpeed * 1000;
+            if (stopwatch.ElapsedMilliseconds - lastStepTimeMs > footstepInterval)
+            {
+                // Switch steps sound depending on the tag on the floor.
+                AudioClip[] clips = footstepsFloor;
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, Vector3.down, out hit))
+                {
+                    switch (hit.collider.gameObject.tag)
+                    {
+                        case "Floor":
+                            clips = footstepsFloor;
+                            break;
+                        case "Stairs":
+                            clips = footstepsStairs;
+                            break;
+                        default:
+                            Debug.LogWarning("Floor tag not recognized: " + hit.collider.gameObject.tag);
+                            break;
+                    }
+                }
+
+                int index = footstepsCount % clips.Length;
+                audioSource.clip = clips[index];
+                audioSource.Play();
+
+                lastStepTimeMs = stopwatch.ElapsedMilliseconds;
+                footstepsCount++;
+            }
+        }
+
+        // TODO: This happens way too often...
+        //if (!characterController.isGrounded)
+        //{
+        //    lastStepTimeMs = float.MinValue;
+        //}
     }
 }

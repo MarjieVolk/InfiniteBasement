@@ -338,8 +338,28 @@ PrefabInstance:
       value: RoomArranger
       objectReference: {fileID: 0}
     - target: {fileID: 5618720263525227347, guid: 28cebc74ffda24c4a969b4fac7c62397, type: 3}
+      propertyPath: roomPrefab
+      value: 
+      objectReference: {fileID: 3921818303814533586, guid: bb9d0a2be2793754498eab132a2491d1, type: 3}
+    - target: {fileID: 5618720263525227347, guid: 28cebc74ffda24c4a969b4fac7c62397, type: 3}
+      propertyPath: prologPosition.x
+      value: 0.375
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618720263525227347, guid: 28cebc74ffda24c4a969b4fac7c62397, type: 3}
       propertyPath: prologPosition.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618720263525227347, guid: 28cebc74ffda24c4a969b4fac7c62397, type: 3}
+      propertyPath: rotationBetweenDoors.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618720263525227347, guid: 28cebc74ffda24c4a969b4fac7c62397, type: 3}
+      propertyPath: translationBetweenDoors.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618720263525227347, guid: 28cebc74ffda24c4a969b4fac7c62397, type: 3}
+      propertyPath: translationBetweenDoors.y
+      value: -3.52
       objectReference: {fileID: 0}
     - target: {fileID: 5618720263525227347, guid: 28cebc74ffda24c4a969b4fac7c62397, type: 3}
       propertyPath: displacementBetweenDoors.x

@@ -66,12 +66,7 @@ public class PlayerController : MonoBehaviour
         Translate();
         Rotate();
         HandleFootsteps();
-
-        if (Input.GetKeyDown("escape"))
-        {
-            // Show the cursor.
-            Cursor.lockState = CursorLockMode.None;
-        }
+        HandleCursorLock();
     }
 
     void Translate()
@@ -174,6 +169,20 @@ public class PlayerController : MonoBehaviour
         //{
         //    lastStepTimeMs = float.MinValue;
         //}
+    }
+
+    void HandleCursorLock()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            // Hide the cursor.
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        if (Input.GetKeyDown("escape"))
+        {
+            // Show the cursor.
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
 

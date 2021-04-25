@@ -6,6 +6,7 @@ public class Interactor : MonoBehaviour
 {
     public CanvasGroup interactionPrompt;
     public Camera camera;
+    public float fadeSpeed = 0.03f;
 
     private InteractTrigger currentTarget;
     private InteractTrigger previousTarget;
@@ -23,7 +24,7 @@ public class Interactor : MonoBehaviour
 
         if (currentTarget)
         {
-            interactionPrompt.alpha = Mathf.Clamp(interactionPrompt.alpha + 0.01f, 0f, 1f);
+            interactionPrompt.alpha = Mathf.Clamp(interactionPrompt.alpha + fadeSpeed, 0f, 1f);
        
             if (promptTransform != null)
             {
@@ -39,7 +40,7 @@ public class Interactor : MonoBehaviour
         }
         else
         {
-            interactionPrompt.alpha = Mathf.Clamp(interactionPrompt.alpha - 0.01f, 0f, 1f);
+            interactionPrompt.alpha = Mathf.Clamp(interactionPrompt.alpha - fadeSpeed, 0f, 1f);
 
             if (promptTransform != null && previousTarget != null)
             {

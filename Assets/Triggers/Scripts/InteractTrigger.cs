@@ -18,8 +18,6 @@ public class InteractTrigger : DefaultTrigger
         {
             OnTrigger();
         }
-
-        // TODO show/hide interact prompt
     }
 
     public void SetIsTargeted(bool isTargeted)

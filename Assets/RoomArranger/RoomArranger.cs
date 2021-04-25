@@ -29,11 +29,8 @@ public class RoomArranger : MonoBehaviour
         currentRoom.Arrange(RoomIteration.Prolog);
 
         // Create room One.
-        nextRoomObject = Instantiate(roomPrefab, Vector3.zero, Quaternion.identity);
-        nextRoomObject.transform.rotation = currentRoomObject.transform.rotation * Quaternion.Euler(rotationBetweenDoors);
-        nextRoomObject.transform.position = currentRoomObject.transform.position + translationBetweenDoors;
+        nextRoomObject = Instantiate(roomPrefab, prologPosition, Quaternion.identity);
         nextRoom = nextRoomObject.GetComponent<RoomInterface>();
-        nextRoom.Arrange(RoomIteration.One);
     }
 
     void Update()
@@ -59,9 +56,9 @@ public class RoomArranger : MonoBehaviour
 
     public void OnRoomEntered()
     {
-        Debug.Log("OnRoomEntered");
-
         RoomIteration enteredIteration = currentRoom.isCompleted ? GetNextRoomIteration(currentRoom.iteration) : currentRoom.iteration;
+
+        Debug.Log("OnRoomEntered: " + enteredIteration);
 
         previousRoomObject = currentRoomObject;
         currentRoomObject = nextRoomObject;
@@ -71,8 +68,10 @@ public class RoomArranger : MonoBehaviour
 
         // Create next room.
         nextRoomObject = Instantiate(roomPrefab, Vector3.zero, Quaternion.identity);
-        nextRoomObject.transform.rotation = currentRoomObject.transform.rotation * Quaternion.Euler(rotationBetweenDoors);
-        nextRoomObject.transform.position = currentRoomObject.transform.position + translationBetweenDoors;
+        Quaternion nextRoomRotation = enteredIteration != RoomIteration.Epilog ? currentRoomObject.transform.rotation * Quaternion.Euler(rotationBetweenDoors) : currentRoomObject.transform.rotation;
+        Vector3 nextRoomPosition = enteredIteration != RoomIteration.Epilog ? currentRoomObject.transform.position + translationBetweenDoors : currentRoomObject.transform.position;
+        nextRoomObject.transform.rotation = nextRoomRotation;
+        nextRoomObject.transform.position = nextRoomPosition;
         nextRoom = nextRoomObject.GetComponent<RoomInterface>();
 
         // Arrange the current room.
@@ -81,7 +80,7 @@ public class RoomArranger : MonoBehaviour
 
     public void OnRoomCompleted()
     {
-        Debug.Log("OnRoomCompleted");
+        Debug.Log("OnRoomCompleted: " + currentRoom.iteration);
 
         currentRoom.isCompleted = true;
     }

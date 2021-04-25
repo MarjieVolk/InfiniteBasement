@@ -14,15 +14,21 @@ public class Room : RoomInterface
 
     }
 
-    override protected GameObject GetReferenceToPrologContent()
+    override protected GameObject GetReferenceToPrologContainer()
     {
-        return GameObject.Find("Prolog");
+        return transform.Find("Prolog").gameObject;
     }
 
-    override protected GameObject GetReferenceToEpilogContent()
+    override protected GameObject GetReferenceToEpilogContainer()
     {
-        return GameObject.Find("Epilog");
+        return transform.Find("Epilog").gameObject;
     }
+
+    override protected GameObject GetReferenceToMainRoomContainer()
+    {
+        return transform.Find("MainRoom").gameObject;
+    }
+
     override protected void ArrangeForRoomOne()
     {
         // TODO: Show/hide/move/adjust whatever items/state is needed for the current room.

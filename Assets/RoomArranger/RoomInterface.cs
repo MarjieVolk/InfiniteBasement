@@ -27,9 +27,11 @@ public abstract class RoomInterface : MonoBehaviour
     public bool isCompleted = false;
 
     // Wrapper around prolog content. For ease of showing/hiding it.
-    protected GameObject prologContent;
+    protected GameObject prologContainer;
     // Wrapper around epilog content. For ease of showing/hiding it.
-    protected GameObject epilogContent;
+    protected GameObject epilogContainer;
+    // Wrapper around main-room content. For ease of showing/hiding it.
+    protected GameObject mainRoomContainer;
 
     void Start()
     {
@@ -45,16 +47,21 @@ public abstract class RoomInterface : MonoBehaviour
     {
         this.iteration = iteration;
 
-        prologContent = GetReferenceToPrologContent();
-        epilogContent = GetReferenceToEpilogContent();
+        prologContainer = GetReferenceToPrologContainer();
+        epilogContainer = GetReferenceToEpilogContainer();
+        mainRoomContainer = GetReferenceToMainRoomContainer();
 
         if (iteration != RoomIteration.Prolog)
         {
-            HidePrologContent();
+            HidePrologContainer();
         }
         if (iteration != RoomIteration.Epilog)
         {
-            HideEpilogContent();
+            HideEpilogContainer();
+        }
+        if (iteration == RoomIteration.Epilog || iteration == RoomIteration.Prolog)
+        {
+            HideMainRoomContainer();
         }
 
         switch (iteration)
@@ -86,21 +93,26 @@ public abstract class RoomInterface : MonoBehaviour
         }
     }
 
-    void HidePrologContent()
+    void HidePrologContainer()
     {
-        // TODO: Fix this. It seems like hiding it on one prefab instance was also hiding it on the other?
-        //prologContent.SetActive(false);
+        prologContainer.SetActive(false);
     }
 
-    void HideEpilogContent()
+    void HideEpilogContainer()
     {
-        // TODO: Fix this. It seems like hiding it on one prefab instance was also hiding it on the other?
-        //epilogContent.SetActive(false);
+        epilogContainer.SetActive(false);
     }
 
-    abstract protected GameObject GetReferenceToPrologContent();
+    void HideMainRoomContainer()
+    {
+        mainRoomContainer.SetActive(false);
+    }
 
-    abstract protected GameObject GetReferenceToEpilogContent();
+    abstract protected GameObject GetReferenceToPrologContainer();
+
+    abstract protected GameObject GetReferenceToEpilogContainer();
+
+    abstract protected GameObject GetReferenceToMainRoomContainer();
 
     protected abstract void ArrangeForRoomOne();
 

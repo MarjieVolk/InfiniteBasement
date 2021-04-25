@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class InteractTrigger : DefaultTrigger
 {
+    public Transform interactPromptTarget;
+
     private bool isTargeted = false;
 
     void Start() {

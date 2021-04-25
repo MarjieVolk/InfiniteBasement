@@ -200,16 +200,6 @@ public class PlayerController : MonoBehaviour
         RoomArranger.instance.OnRoomCompleted();
     }
 
-    public void OnDoorOpened()
-    {
-        RoomArranger.instance.OnDoorOpened();
-    }
-
-    public void OnDoorClosed()
-    {
-        RoomArranger.instance.OnDoorClosed();
-    }
-
     public void OnRoomEntered()
     {
         RoomArranger.instance.OnRoomEntered();

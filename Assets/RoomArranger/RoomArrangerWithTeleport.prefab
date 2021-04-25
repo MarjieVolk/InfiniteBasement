@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5618720263525227346
+--- !u!1 &3811257709246591294
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5618720263525227344}
-  - component: {fileID: 5618720263525227347}
+  - component: {fileID: 3811257709246591292}
+  - component: {fileID: 3811257709246591293}
   m_Layer: 0
-  m_Name: RoomArranger
+  m_Name: RoomArrangerWithTeleport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5618720263525227344
+--- !u!4 &3811257709246591292
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5618720263525227346}
+  m_GameObject: {fileID: 3811257709246591294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 69.879906, y: -14.616067, z: -0.7659214}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5618720263525227347
+--- !u!114 &3811257709246591293
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5618720263525227346}
+  m_GameObject: {fileID: 3811257709246591294}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfbffd903fbeade4480ee0e4d4b484ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 527394e03050c094d9c2660638f4faa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomPrefab: {fileID: 2695024434232134713, guid: d3f58bb8b906100408c0047c70eecde1, type: 3}
+  roomPrefab: {fileID: 3921818303814533586, guid: bb9d0a2be2793754498eab132a2491d1, type: 3}
+  translationBetweenDoors: {x: 0, y: -3.52, z: 0}
+  rotationBetweenDoors: {x: 0, y: 180, z: 0}
+  prologPosition: {x: 0.375, y: 0, z: 0.5}

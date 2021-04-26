@@ -28,11 +28,9 @@ public enum Triggers
     EndDoor,
 
     Gramaphone,
-    Sponge,
-    Picture1,
-    Picture2,
-    Picture3,
-    Phone,
+    Curtain,
+    PhotoCat,
+    PhotoThread,
 
     // TODO: Add new trigger types as needed.
 }
@@ -118,26 +116,17 @@ public abstract class RoomInterface : MonoBehaviour
 
     void HidePrologContainer()
     {
-        if (prologContainer != null)
-        {
-            prologContainer.SetActive(false);
-        }
+        prologContainer.SetActive(false);
     }
 
     void HideEpilogContainer()
     {
-        if (epilogContainer != null)
-        {
-            epilogContainer.SetActive(false);
-        }
+        epilogContainer.SetActive(false);
     }
 
     void HideMainRoomContainer()
     {
-        if (mainRoomContainer != null)
-        { 
-            mainRoomContainer.SetActive(false);
-        }
+        mainRoomContainer.SetActive(false);
     }
 
     protected void QuitToMenu()

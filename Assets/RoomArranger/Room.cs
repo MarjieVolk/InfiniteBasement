@@ -159,6 +159,7 @@ public class Room : RoomInterface
         SetDoorOpen(false, true);
         DisableAllTriggers();
         EnableTriggersOfType(Triggers.Unknown);
+        EnableTriggersOfType(Triggers.Window);
         SetTriggerIsActive(Triggers.StartDoor, true);
         musicSwitcher.PlayMusic(Music.Piano1);
     }

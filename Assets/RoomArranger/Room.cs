@@ -145,9 +145,11 @@ public class Room : RoomInterface
             case Triggers.Window:
                 bigCurtains.GetComponent<Animator>().SetTrigger("curtainsOpen");
                 grayRoom.GetComponent<Animator>().SetTrigger("loop1_clear");
+                EnableTriggersOfType(Triggers.Gramophone);
                 break;
 
-            // TODO: React to individual triggers as needed.
+            case Triggers.Gramophone:
+                musicSwitcher.PlayMusic(Music.Piano1);
 
             default:
                 break;
@@ -161,7 +163,6 @@ public class Room : RoomInterface
         EnableTriggersOfType(Triggers.Unknown);
         EnableTriggersOfType(Triggers.Window);
         SetTriggerIsActive(Triggers.StartDoor, true);
-        musicSwitcher.PlayMusic(Music.Piano1);
     }
 
     override protected void ArrangeForRoomTwo()

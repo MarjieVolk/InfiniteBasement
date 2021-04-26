@@ -12,6 +12,11 @@ public class TestRoom : RoomInterface
         return null;
     }
 
+    override protected void UnhighlightAllInteractableObjects()
+    {
+        // TODO
+    }
+
     override public void OnTrigger(Triggers triggerType)
     {
         switch (triggerType)

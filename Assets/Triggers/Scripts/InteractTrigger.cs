@@ -32,6 +32,7 @@ public class InteractTrigger : DefaultTrigger
         this.isTargeted = isTargeted;
         if (changed)
         {
+            Debug.Log("InteractTrigger.SetIsTargeted (" + triggerType + "): " + isTargeted);
             RoomArranger.instance.OnTriggerTargetChange(triggerType, isTargeted);
         }
     }

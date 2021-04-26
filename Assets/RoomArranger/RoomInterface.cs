@@ -4,7 +4,9 @@ using UnityEngine;
 
 public enum RoomIteration
 {
-    // This represents whatever is shown before entering the first door, at the start of the game.
+    Unknown,
+
+    // CURRENTLY UNUSED. This represents whatever is shown before entering the first door, at the start of the game.
     Prolog,
 
     One,
@@ -12,8 +14,8 @@ public enum RoomIteration
     Three,
     Four,
     Five,
-    
-    // This represents whatever is shown after leaning the last door, at the end of the game.
+
+    // CURRENTLY UNUSED. This represents whatever is shown after leaving the last door, at the end of the game.
     Epilog,
 }
 
@@ -45,6 +47,8 @@ public abstract class RoomInterface : MonoBehaviour
 
     public void Arrange(RoomIteration iteration)
     {
+        Debug.Log("RoomInterface.Arrange");
+
         this.iteration = iteration;
 
         prologContainer = GetReferenceToPrologContainer();
@@ -87,6 +91,7 @@ public abstract class RoomInterface : MonoBehaviour
             case RoomIteration.Epilog:
                 ArrangeForEpilog();
                 break;
+            case RoomIteration.Unknown:
             default:
                 Debug.LogError("Unrecognized RoomIteration: " + iteration);
                 break;

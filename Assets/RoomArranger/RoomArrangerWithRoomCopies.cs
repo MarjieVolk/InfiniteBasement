@@ -14,22 +14,21 @@ public class RoomArrangerWithRoomCopies : RoomArranger
     {
         base.Start();
 
-        // Create room One.
-        nextRoomObject = Instantiate(roomPrefab, prologPosition, Quaternion.identity);
+        // Create the next room.
+        nextRoomObject = Instantiate(roomPrefab, startPosition, Quaternion.identity);
         nextRoom = nextRoomObject.GetComponent<RoomInterface>();
     }
 
     // TODO: Replace this with logic to destroy previous previous on enter. Also handle next next.
-    public void OnDoorClosed()
-    {
-        Debug.Log("OnDoorClosed");
+    //public void OnDoorClosed()
+    //{
+    //    Debug.Log("OnDoorClosed");
+    //    Destroy(previousRoomObject);
+    //    previousRoomObject = null;
+    //    previousRoom = null;
+    //}
 
-        Destroy(previousRoomObject);
-        previousRoomObject = null;
-        previousRoom = null;
-    }
-
-    override protected void UpdateForNewRoom(RoomIteration enteredIteration)
+    override protected void UpdateForNewRoom(RoomIteration enteredIteration, bool isUpperDoorway, Vector3 displacementPastDoor)
     {
         previousRoomObject = currentRoomObject;
         currentRoomObject = nextRoomObject;

@@ -46,4 +46,4 @@ MonoBehaviour:
   roomPrefab: {fileID: 3921818303814533586, guid: bb9d0a2be2793754498eab132a2491d1, type: 3}
   translationBetweenDoors: {x: 0, y: -3.52, z: 0}
   rotationBetweenDoors: {x: 0, y: 180, z: 0}
-  prologPosition: {x: 0.375, y: 0, z: 0.5}
+  startPosition: {x: 0.375, y: 0, z: -0.5}

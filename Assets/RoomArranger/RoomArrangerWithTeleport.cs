@@ -4,12 +4,39 @@ using UnityEngine;
 
 public class RoomArrangerWithTeleport : RoomArranger
 {
-    override protected void UpdateForNewRoom(RoomIteration enteredIteration)
+    override protected void UpdateForNewRoom(RoomIteration enteredIteration, bool isUpperDoorway, Vector3 displacementPastDoor)
     {
         // Teleport player.
-        Quaternion nextRoomRotation = enteredIteration != RoomIteration.Epilog ? currentRoomObject.transform.rotation * Quaternion.Euler(rotationBetweenDoors) : currentRoomObject.transform.rotation;
-        Vector3 nextRoomPosition = enteredIteration != RoomIteration.Epilog ? currentRoomObject.transform.position + translationBetweenDoors : currentRoomObject.transform.position;
-        PlayerController.instance.transform.rotation = nextRoomRotation;
-        PlayerController.instance.transform.position = nextRoomPosition;
+        Vector3 rotation;
+        Vector3 translation;
+        if (enteredIteration != RoomIteration.Epilog)
+        {
+            Vector3 offsetForDisplacementPastDoor = Quaternion.Euler(rotationBetweenDoors) * displacementPastDoor;
+            if (isUpperDoorway)
+            {
+                rotation = -rotationBetweenDoors;
+                translation = translationBetweenDoors + offsetForDisplacementPastDoor;
+            }
+            else
+            {
+                rotation = rotationBetweenDoors;
+                translation = -translationBetweenDoors + offsetForDisplacementPastDoor;
+            }
+        }
+        else
+        {
+            rotation = Vector3.zero;
+            translation = Vector3.zero;
+        }
+
+        Debug.Log("Teleporting player: " +
+            "fromUpperDoorway=" + isUpperDoorway +
+            ", enteringIteration=" + enteredIteration +
+            ", positionStart=" + PlayerController.instance.transform.position +
+            ", translation=" + translation +
+            ", rotationStart=" + PlayerController.instance.transform.rotation +
+            ", rotation=" + rotation);
+
+        PlayerController.instance.Teleport(translation, rotation);
     }
 }

@@ -9,7 +9,7 @@ abstract public class RoomArranger : MonoBehaviour
     public GameObject roomPrefab;
     public Vector3 translationBetweenDoors;
     public Vector3 rotationBetweenDoors;
-    public Vector3 prologPosition;
+    public Vector3 startPosition;
 
     protected GameObject currentRoomObject;
     protected RoomInterface currentRoom;
@@ -18,25 +18,39 @@ abstract public class RoomArranger : MonoBehaviour
     {
         RoomArranger.instance = this;
 
-        // Create the prolog.
-        currentRoomObject = Instantiate(roomPrefab, prologPosition, Quaternion.identity);
+        // Create the first room.
+        currentRoomObject = Instantiate(roomPrefab, startPosition, Quaternion.identity);
         currentRoom = currentRoomObject.GetComponent<RoomInterface>();
-        currentRoom.Arrange(RoomIteration.Prolog);
+        currentRoom.Arrange(RoomIteration.One);
     }
 
-    public void OnRoomEntered()
+    public void OnRoomExited(bool isUpperDoorway, Vector3 displacementPastDoor)
     {
-        RoomIteration enteredIteration = currentRoom.isCompleted ? GetNextRoomIteration(currentRoom.iteration) : currentRoom.iteration;
+        RoomIteration previousIteration = currentRoom.iteration;
+        RoomIteration nextIteration;
+        if (!isUpperDoorway && currentRoom.isCompleted)
+        {
+            nextIteration = GetNextRoomIteration(previousIteration);
+        }
+        else
+        {
+            nextIteration = previousIteration;
+        }
 
-        Debug.Log("OnRoomEntered: " + enteredIteration);
+        Debug.Log("OnRoomExited: " +
+            "from=" + previousIteration + 
+            ", to=" + nextIteration + 
+            ", isUpperDoorway=" + isUpperDoorway + 
+            ", displacementPastDoor=" + displacementPastDoor);
 
-        UpdateForNewRoom(enteredIteration);
+        UpdateForNewRoom(nextIteration, isUpperDoorway, displacementPastDoor);
 
         // Arrange the current room.
-        currentRoom.Arrange(enteredIteration);
+        currentRoom.isCompleted = false;
+        currentRoom.Arrange(nextIteration);
     }
 
-    abstract protected void UpdateForNewRoom(RoomIteration enteredIteration);
+    abstract protected void UpdateForNewRoom(RoomIteration enteredIteration, bool isUpperDoorway, Vector3 displacementPastDoor);
 
     public void OnRoomCompleted()
     {
@@ -63,10 +77,11 @@ abstract public class RoomArranger : MonoBehaviour
                 return RoomIteration.Epilog;
             case RoomIteration.Epilog:
                 Debug.LogError("Attempting to leave RoomIteration.Epilog");
-                return RoomIteration.Prolog;
+                return RoomIteration.Unknown;
+            case RoomIteration.Unknown:
             default:
                 Debug.LogError("Unrecognized RoomIteration: " + previousIteration);
-                return RoomIteration.Prolog;
+                return RoomIteration.Unknown;
         }
     }
 }

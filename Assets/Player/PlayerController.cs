@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    #if UNITY_WEBGL
+#if UNITY_WEBGL
     const float MOUSE_SENSITIVITY_MULTIPLIER = 0.5f;
-    #else
+#else
     const float MOUSE_SENSITIVITY_MULTIPLIER = 1;
-    #endif
+#endif
 
     public static PlayerController instance;
 
@@ -51,6 +51,9 @@ public class PlayerController : MonoBehaviour
     private bool isPressingSideways = false;
     private bool isWalking = false;
 
+    public bool hasMovedSinceTeleporting = false;
+    public bool lastExitedUpperDoor = false;
+
     void Start()
     {
         PlayerController.instance = this;
@@ -60,7 +63,7 @@ public class PlayerController : MonoBehaviour
 
         characterController = GetComponent<CharacterController>();
         audioSource = GetComponent<AudioSource>();
-        
+
         // Hide the cursor.
         Cursor.lockState = CursorLockMode.Locked;
         // Hide the capsule that's rendered for dev-purposes in the editor.
@@ -73,6 +76,13 @@ public class PlayerController : MonoBehaviour
         Rotate();
         HandleFootsteps();
         HandleCursorLock();
+
+        if (isPressingForward || isPressingBackward || isPressingSideways)
+        {
+            // FIXME: LEFT OFF HERE: Need to do something smarter: maybe save last teleport destination, and check that the player has moved further from the trigger than that position at least one frame before allowing it to trigger?
+            if (!hasMovedSinceTeleporting) Debug.Log("Post teleport: position=" + transform.position + ", rotation=" + transform.rotation);// TODO: Remove.
+            hasMovedSinceTeleporting = true;
+        }
     }
 
     void Translate()
@@ -191,6 +201,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Teleport(Vector3 translation, Vector3 rotation)
+    {
+        rotationAngles.x += rotation.y;
+        rotationAngles.y += rotation.x;
+
+        // Need to disable the CharacterController while teleporting, otherwise it immediately overrides our updates.
+        characterController.enabled = false;
+        characterController.transform.rotation *= Quaternion.Euler(rotation);
+        characterController.transform.position += translation;
+        characterController.enabled = true;
+
+        hasMovedSinceTeleporting = false;
+    }
+
 
     // TODO: Call the following from triggers?
 
@@ -200,8 +224,14 @@ public class PlayerController : MonoBehaviour
         RoomArranger.instance.OnRoomCompleted();
     }
 
-    public void OnRoomEntered()
+    public void OnRoomExited(bool isUpperDoorway, Vector3 displacementPastDoor)
     {
-        RoomArranger.instance.OnRoomEntered();
+        lastExitedUpperDoor = isUpperDoorway;
+        RoomArranger.instance.OnRoomExited(isUpperDoorway, displacementPastDoor);
+    }
+
+    public float GetRadius()
+    {
+        return characterController.radius;
     }
 }

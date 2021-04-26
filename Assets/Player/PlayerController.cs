@@ -5,11 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-#if UNITY_WEBGL
-    const float MOUSE_SENSITIVITY_MULTIPLIER = 0.5f;
-#else
-    const float MOUSE_SENSITIVITY_MULTIPLIER = 1;
-#endif
+    const float WEB_BUILD_MOUSE_SENSITIVITY_MULTIPLIER = 0.1f;
+    const float IN_EDITOR_MOUSE_SENSITIVITY_MULTIPLIER = 1;
 
     public static PlayerController instance;
 
@@ -131,7 +128,8 @@ public class PlayerController : MonoBehaviour
 
     void Rotate()
     {
-        Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * MOUSE_SENSITIVITY_MULTIPLIER;
+        float sensitivityMultiplier = Application.isEditor ? IN_EDITOR_MOUSE_SENSITIVITY_MULTIPLIER : WEB_BUILD_MOUSE_SENSITIVITY_MULTIPLIER;
+        Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * sensitivityMultiplier;
         mouseDelta = Vector2.Scale(mouseDelta, new Vector2(mouseSensitivityX * mouseSmoothing, mouseSensitivityY * mouseSmoothing));
 
         smoothV.x = Mathf.Lerp(smoothV.x, mouseDelta.x, 1f / mouseSmoothing);

@@ -14,7 +14,7 @@ public class MenuSingleton : MonoBehaviour
     public void StartGame()
     {
         // TODO: Load the real scene whatever that is
-        SceneManager.LoadScene("LeviScene");
+        SceneManager.LoadScene("AudreyScene");
     }
 
     protected void Update()

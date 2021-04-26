@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour
                             clips = footstepsStairs;
                             break;
                         default:
-                            Debug.LogWarning("Floor tag not recognized: " + hit.collider.gameObject.tag);
+                            //Debug.LogWarning("Floor tag not recognized: " + hit.collider.gameObject.tag);
                             break;
                     }
                 }

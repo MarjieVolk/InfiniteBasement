@@ -25,11 +25,20 @@ public class Room : RoomInterface
     {
         if (triggerToObjectName.ContainsKey(triggerType))
         {
-            return interactableObjectsContainer.transform.Find(triggerToObjectName[triggerType]).gameObject;
+            Transform objectTransform = interactableObjectsContainer.transform.Find(triggerToObjectName[triggerType]);
+            if (objectTransform != null)
+            {
+                return objectTransform.gameObject;
+            }
+            else
+            {
+                Debug.LogError("Object for trigger not found: trigger=" + triggerType + ", objectName=" + triggerToObjectName[triggerType]);
+                return null;
+            }
         }
         else
         {
-            Debug.LogWarning("Unrecognized triggerType: " + triggerType);
+            Debug.LogWarning("No object name mapped for trigger type: " + triggerType);
             return null;
         }
     }

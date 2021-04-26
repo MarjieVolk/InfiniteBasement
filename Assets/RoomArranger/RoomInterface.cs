@@ -43,7 +43,7 @@ public abstract class RoomInterface : MonoBehaviour
 {
     public static Dictionary<Triggers, string> triggerToObjectName = new Dictionary<Triggers, string>
     {
-        { Triggers.Gramaphone, "Gramophone01" },
+        { Triggers.Gramaphone, "Gramophone01/Gramophone" },
         { Triggers.Sponge, "Sponge_for_cleaning" },
         { Triggers.Picture1, "Picture_1" },
         { Triggers.Picture2, "Picture_2" },

@@ -28,9 +28,11 @@ public enum Triggers
     EndDoor,
 
     Gramaphone,
-    Curtain,
-    PhotoCat,
-    PhotoThread,
+    Sponge,
+    Picture1,
+    Picture2,
+    Picture3,
+    Phone,
 
     // TODO: Add new trigger types as needed.
 }

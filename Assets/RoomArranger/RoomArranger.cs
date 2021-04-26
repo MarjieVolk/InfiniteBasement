@@ -34,6 +34,9 @@ abstract public class RoomArranger : MonoBehaviour
     virtual protected void DelayedStart()
     {
         currentRoom.Arrange(RoomIteration.One);
+
+        DisableAllTriggers();
+        EnableTriggersOfType(Triggers.Unknown);
     }
 
     public void OnRoomExited(bool isUpperDoorway, Vector3 displacementPastDoor)
@@ -74,6 +77,37 @@ abstract public class RoomArranger : MonoBehaviour
     public void OnTrigger(Triggers triggerType)
     {
         currentRoom.OnTrigger(triggerType);
+    }
+
+    /** Enable all triggers of the given {@code type}. */
+    public void EnableTriggersOfType(Triggers type) {
+        DefaultTrigger[] defaultTriggers = FindObjectsOfType<DefaultTrigger>();
+        foreach (DefaultTrigger trigger in defaultTriggers)
+        {
+            if (trigger.triggerType == type) {
+                trigger.isEnabled = true;
+            }
+        }
+    }
+    
+    /** Disable all triggers of the given {@code type}. */
+    public void DisableTriggersOfType(Triggers type) {
+        DefaultTrigger[] defaultTriggers = FindObjectsOfType<DefaultTrigger>();
+        foreach (DefaultTrigger trigger in defaultTriggers)
+        {
+            if (trigger.triggerType == type) {
+                trigger.isEnabled = false;
+            }
+        }
+    }
+
+    /** Disable all triggers. */
+    public void DisableAllTriggers() {
+        DefaultTrigger[] defaultTriggers = FindObjectsOfType<DefaultTrigger>();
+        foreach (DefaultTrigger trigger in defaultTriggers)
+        {
+            trigger.isEnabled = false;
+        }
     }
 
     public void OnTriggerTargetChange(Triggers triggerType, bool isTargeted)

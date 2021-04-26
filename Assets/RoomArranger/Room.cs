@@ -109,7 +109,6 @@ public class Room : RoomInterface
         }
     }
 
-
     override protected void UnhighlightAllInteractableObjects()
     {
         foreach (Triggers triggerType in triggerToObjectName.Keys)
@@ -126,71 +125,6 @@ public class Room : RoomInterface
         }
     }
 
-<<<<<<< .mine
-    override protected void UnhighlightAllInteractableObjects()
-    {
-        foreach (Triggers triggerType in triggerToObjectName.Keys)
-        {
-            SetObjectHighlight(triggerType, false);
-        }
-    }
-
-    override protected void DeactivateAllInteractableObjects()
-    {
-        foreach (Triggers triggerType in triggerToTriggerObjectName.Keys)
-        {
-            SetTriggerIsActive(triggerType, false);
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
-    /** Enable all triggers of the given {@code type}. */
-    public void EnableTriggersOfType(Triggers type) {
-        DefaultTrigger[] defaultTriggers = FindObjectsOfType<DefaultTrigger>();
-        foreach (DefaultTrigger trigger in defaultTriggers)
-        {
-            if (trigger.triggerType == type) {
-                trigger.isEnabled = true;
-            }
-        }
-    }
-    
-    /** Disable all triggers of the given {@code type}. */
-    public void DisableTriggersOfType(Triggers type) {
-        DefaultTrigger[] defaultTriggers = FindObjectsOfType<DefaultTrigger>();
-        foreach (DefaultTrigger trigger in defaultTriggers)
-        {
-            if (trigger.triggerType == type) {
-                trigger.isEnabled = false;
-            }
-        }
-    }
-
-    /** Disable all triggers. */
-    public void DisableAllTriggers() {
-        DefaultTrigger[] defaultTriggers = FindObjectsOfType<DefaultTrigger>();
-        foreach (DefaultTrigger trigger in defaultTriggers)
-        {
-            trigger.isEnabled = false;
-        }
-    }
-
->>>>>>> .theirs
     override public void OnTrigger(Triggers triggerType)
     {
         switch (triggerType)
@@ -212,13 +146,6 @@ public class Room : RoomInterface
         DisableAllTriggers();
         EnableTriggersOfType(Triggers.Unknown);
         SetTriggerIsActive(Triggers.StartDoor, true);
-<<<<<<< .mine
-        SetTriggerIsActive(Triggers.StartDoor, true);
-
-=======
-        DisableAllTriggers();
-        EnableTriggersOfType(Triggers.Unknown);
->>>>>>> .theirs
     }
 
     override protected void ArrangeForRoomTwo()

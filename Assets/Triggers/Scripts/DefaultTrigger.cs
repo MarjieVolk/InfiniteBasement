@@ -49,12 +49,11 @@ public abstract class DefaultTrigger : Trigger
 
         Debug.Log("DefaultTrigger.OnTrigger (" + triggerType + ")");
 
-        RoomArranger.instance.OnTrigger(triggerType, isEnabled);
-
         if (isEnabled && playAudioOnTrigger) {
             audioPlayer.clip = playAudioOnTrigger;
             audioPlayer.Play();
             triggered =  true;
+            RoomArranger.instance.OnTrigger(triggerType, isEnabled);
         } else if (!isEnabled && playAudioOnDisabled.Length > 0) {
             audioPlayer.clip = playAudioOnDisabled[numTimesDisabled++ % playAudioOnDisabled.Length];
             audioPlayer.Play();

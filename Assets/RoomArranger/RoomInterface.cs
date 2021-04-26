@@ -108,7 +108,8 @@ public abstract class RoomInterface : MonoBehaviour
             HideMainRoomContainer();
         }
 
-        DeactivateAllInteractableObjects();
+        SetTriggerIsActive(Triggers.StartDoor, false);
+        SetTriggerIsActive(Triggers.EndDoor, false);
 
         switch (iteration)
         {

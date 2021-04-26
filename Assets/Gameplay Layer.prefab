@@ -806,6 +806,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4455648398025188360, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
+      propertyPath: playAudioOnTrigger
+      value: 
+      objectReference: {fileID: 8300000, guid: c22fa78f579f09043b75813540d044eb, type: 3}
+    - target: {fileID: 4455648398025188360, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
+      propertyPath: playAudioOnDisabled.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: c4f5387eec4bfdd4fa0596b7adf1fdc1, type: 3}
+    - target: {fileID: 4455648398025188360, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
+      propertyPath: playAudioOnDisabled.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7cc4d8e4b633cc14ca272f76b65a9000, type: 3}
     - target: {fileID: 4455648398025188361, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
       propertyPath: m_audioClip
       value: 

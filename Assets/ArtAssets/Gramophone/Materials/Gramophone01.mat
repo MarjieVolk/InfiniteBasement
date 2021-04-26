@@ -23,8 +23,20 @@ Material:
         m_Texture: {fileID: 2800000, guid: e0e914c5deb1983479a24c5e8ac72b6e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - Texture2D_4052057583174bd39d59bc48f3a38a28:
+        m_Texture: {fileID: 2800000, guid: c7d000d7220e0ad4ab718c18e7a7f3c9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_E902F5F8:
         m_Texture: {fileID: 2800000, guid: 76b7d29318a4fea4985f4bb529172d34, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_a6e50a18d82b42ce84fd32be91168de7:
+        m_Texture: {fileID: 2800000, guid: c7d000d7220e0ad4ab718c18e7a7f3c9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_ac70c769c5b842768c54166d426bab47:
+        m_Texture: {fileID: 2800000, guid: af90635333b1f914a8c3f215c83d905f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:

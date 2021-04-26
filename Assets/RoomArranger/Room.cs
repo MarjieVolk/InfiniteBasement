@@ -150,6 +150,7 @@ public class Room : RoomInterface
 
             case Triggers.Gramophone:
                 musicSwitcher.PlayMusic(Music.Piano1);
+                break;
 
             default:
                 break;

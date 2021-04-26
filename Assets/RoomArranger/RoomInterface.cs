@@ -27,7 +27,7 @@ public enum Triggers
     StartDoor,
     EndDoor,
 
-    Gramaphone,
+    Gramophone,
     Sponge,
     Picture1,
     Picture2,
@@ -43,7 +43,7 @@ public abstract class RoomInterface : MonoBehaviour
 {
     public static Dictionary<Triggers, string> triggerToObjectName = new Dictionary<Triggers, string>
     {
-        { Triggers.Gramaphone, "Gramophone01/Gramophone" },
+        { Triggers.Gramophone, "Gramophone01/Gramophone" },
         { Triggers.Sponge, "Sponge_for_cleaning" },
         { Triggers.Picture1, "Picture_1" },
         { Triggers.Picture2, "Picture_2" },
@@ -56,7 +56,7 @@ public abstract class RoomInterface : MonoBehaviour
     {
         { Triggers.Phone, "Phone Trigger" },
         { Triggers.Sponge, "Cloth Trigger" },
-        { Triggers.Gramaphone, "Gramophone Trigger" },
+        { Triggers.Gramophone, "Gramophone Trigger" },
         { Triggers.Window, "Window Trigger" },
         { Triggers.Picture1, "Picture 1 Trigger" },
         { Triggers.Picture2, "Picture 2 Trigger" },

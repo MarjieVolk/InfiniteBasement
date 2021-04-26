@@ -14,9 +14,6 @@ abstract public class RoomArranger : MonoBehaviour
     protected GameObject currentRoomObject;
     protected RoomInterface currentRoom;
 
-    public float highlightGlintSpeed = 3;
-    private float unhighlightedGlintSpeed = 0;
-
     virtual protected void Start()
     {
         RoomArranger.instance = this;
@@ -69,9 +66,15 @@ abstract public class RoomArranger : MonoBehaviour
 
     public void OnTriggerTargetChange(Triggers triggerType, bool isTargeted)
     {
-        GameObject item = currentRoom.GetObjectForTrigger(triggerType);
-        float glintSpeed = isTargeted ? highlightGlintSpeed : unhighlightedGlintSpeed;
-        item.GetComponent<Renderer>().material.SetFloat("GlintSpeed", glintSpeed);
+        currentRoom.OnTriggerTargetChange(triggerType, isTargeted);
+    }
+
+    void UnhighlightAllInteractableObjects()
+    {
+        foreach (Transform child in transform)
+        {
+
+        }
     }
 
     public static RoomIteration GetNextRoomIteration(RoomIteration previousIteration)

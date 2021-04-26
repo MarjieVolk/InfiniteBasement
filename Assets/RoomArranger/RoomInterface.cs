@@ -34,13 +34,30 @@ public enum Triggers
     Picture3,
     Phone,
 
+    Window,
+
     // TODO: Add new trigger types as needed.
 }
 
 public abstract class RoomInterface : MonoBehaviour
 {
+    public static Dictionary<Triggers, string> triggerToObjectName = new Dictionary<Triggers, string>
+    {
+        { Triggers.Gramaphone, "Gramophone01" },
+        { Triggers.Sponge, "Sponge_for_cleaning" },
+        { Triggers.Picture1, "Picture_1" },
+        { Triggers.Picture2, "Picture_2" },
+        { Triggers.Picture3, "Picture_3" },
+        { Triggers.Phone, "Phone" },
+
+        // TODO: Add trigger-to-name mappings here as needed.
+    };
+
     // Which version of the room this currently is.
     public RoomIteration iteration;
+
+    public float highlightGlintSpeed = 3;
+    private float unhighlightedGlintSpeed = 0;
 
     // If true, then the next room will be the next iteration, progressing the storyline.
     // If false, then the next room will be the same iteration as this room.
@@ -106,21 +123,48 @@ public abstract class RoomInterface : MonoBehaviour
         }
     }
 
+    public void OnTriggerTargetChange(Triggers triggerType, bool isTargeted)
+    {
+        GameObject item = GetObjectForTrigger(triggerType);
+        if (item == null)
+        {
+            return;
+        }
+        SetObjectHighlight(item, isTargeted);
+    }
+
+    protected void SetObjectHighlight(GameObject item, bool isHighlighted)
+    {
+        float glintSpeed = isHighlighted ? highlightGlintSpeed : unhighlightedGlintSpeed;
+        item.GetComponent<Renderer>().material.SetFloat("GlintSpeed", glintSpeed);
+    }
+
     abstract public GameObject GetObjectForTrigger(Triggers triggerType);
+
+    abstract protected void UnhighlightAllInteractableObjects();
 
     void HidePrologContainer()
     {
-        prologContainer.SetActive(false);
+        if (prologContainer != null)
+        {
+            prologContainer.SetActive(false);
+        }
     }
 
     void HideEpilogContainer()
     {
-        epilogContainer.SetActive(false);
+        if (epilogContainer != null)
+        {
+            epilogContainer.SetActive(false);
+        }
     }
 
     void HideMainRoomContainer()
     {
-        mainRoomContainer.SetActive(false);
+        if (mainRoomContainer != null)
+        {
+            mainRoomContainer.SetActive(false);
+        }
     }
 
     protected void QuitToMenu()

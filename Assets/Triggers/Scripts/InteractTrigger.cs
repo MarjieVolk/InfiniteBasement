@@ -2,8 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * An event that can occur due to a player interaction.
+ *
+ * This trigger should be used with an {@link Interactor}.
+ */
 public class InteractTrigger : DefaultTrigger
 {
+    [Tooltip("The location where we should display the interaction tooltip/hint.")]
     public Transform interactPromptTarget;
 
     private bool isTargeted = false;

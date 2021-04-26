@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * An default trigger that provides some simple functionality for sounds, etc.
+ *
+ * For more complex logic, you may need to define a new trigger instead of using this class.
+ */
 public abstract class DefaultTrigger : Trigger
 {
 

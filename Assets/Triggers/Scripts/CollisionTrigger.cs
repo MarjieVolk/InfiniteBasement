@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * A trigger that activates when a player walks through the trigger zone.
+ */
 public class CollisionTrigger : DefaultTrigger
 {
     [Tooltip(

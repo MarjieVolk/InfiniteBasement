@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/** A trigger that activates when the player exits the room, up or down. */
 public class ExitRoomTrigger : CollisionTrigger
 {
+    [Tooltip("Set to false if this corresponds to the player walking downstairs.")]
     public bool isUpperDoorway = true;
 
-    // This indicates whether this trigger is used to detect when the player backtracks through the same door they came in from.
-    // Otherwise, we disable the normal exit trigger on that door.
+    [Tooltip("This indicates whether this trigger is used to detect when the player backtracks"
+        + " through the same door they came in from. Otherwise, we disable the normal exit"
+        + " trigger on that door.")]
     public bool isGoBackTrigger = false;
 
+    [Tooltip("The direction pointing outward from the doorway, generally away from the player.")]
     public Vector3 outwardNormal;
 
     void Start()

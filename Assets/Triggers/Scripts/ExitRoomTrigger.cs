@@ -39,6 +39,14 @@ public class ExitRoomTrigger : CollisionTrigger
         base.OnTrigger();
         Vector3 displacementPastDoor = PlayerController.instance.transform.position + PlayerController.instance.GetRadius() * outwardNormal - transform.position;
         displacementPastDoor.y = 0;
+        
+        // Ensure all doors are open so we don't collide during teleportation.
+        (RoomArranger.instance.currentRoom as Room).SetDoorOpen(true, true);
+        (RoomArranger.instance.currentRoom as Room).SetDoorOpen(true, false);
+
+        // TODO: Undo this after fixing teleportation
+        displacementPastDoor += outwardNormal * 0.04f;
+
         PlayerController.instance.OnRoomExited(isUpperDoorway, displacementPastDoor);
     }
 }

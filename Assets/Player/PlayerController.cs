@@ -76,8 +76,10 @@ public class PlayerController : MonoBehaviour
 
         if (isPressingForward || isPressingBackward || isPressingSideways)
         {
-            // FIXME: LEFT OFF HERE: Need to do something smarter: maybe save last teleport destination, and check that the player has moved further from the trigger than that position at least one frame before allowing it to trigger?
-            if (!hasMovedSinceTeleporting) Debug.Log("Post teleport: position=" + transform.position + ", rotation=" + transform.rotation);// TODO: Remove.
+            if (!hasMovedSinceTeleporting)
+            {
+                Debug.Log("Post teleport: position=" + transform.position + ", rotation=" + transform.rotation);
+            }
             hasMovedSinceTeleporting = true;
         }
     }

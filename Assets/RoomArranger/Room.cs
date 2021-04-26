@@ -159,7 +159,8 @@ public class Room : RoomInterface
 
     override protected void ArrangeForRoomOne()
     {
-        SetDoorOpen(false, true);
+        // TODO: Add this back after fixing things when teleporting forward into room One from room One.
+        //SetDoorOpen(false, true);
         DisableAllTriggers();
         EnableTriggersOfType(Triggers.Unknown);
         EnableTriggersOfType(Triggers.Window);
@@ -185,7 +186,7 @@ public class Room : RoomInterface
         SetTriggerIsActive(Triggers.EndDoor, true);
     }
 
-    void SetDoorOpen(bool isOpen, bool isUpperDoor)
+    public void SetDoorOpen(bool isOpen, bool isUpperDoor)
     {
         GameObject container = isUpperDoor ? furnitureContainer : lowerCopyRoomFurnitureContainer;
         if (container == null)

@@ -53,11 +53,12 @@ public abstract class DefaultTrigger : Trigger
             audioPlayer.clip = playAudioOnTrigger;
             audioPlayer.Play();
             triggered =  true;
-            RoomArranger.instance.OnTrigger(triggerType, isEnabled);
         } else if (!isEnabled && playAudioOnDisabled.Length > 0) {
             audioPlayer.clip = playAudioOnDisabled[numTimesDisabled++ % playAudioOnDisabled.Length];
             audioPlayer.Play();
         }
+
+        RoomArranger.instance.OnTrigger(triggerType, isEnabled);
     }
 
     // Start is called before the first frame update

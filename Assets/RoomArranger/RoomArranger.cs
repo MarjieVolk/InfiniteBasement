@@ -12,7 +12,7 @@ abstract public class RoomArranger : MonoBehaviour
     public Vector3 startPosition;
 
     protected GameObject currentRoomObject;
-    protected RoomInterface currentRoom;
+    public RoomInterface currentRoom;
 
     virtual protected void Start()
     {

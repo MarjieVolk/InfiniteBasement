@@ -160,7 +160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5855254598410485367, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.9679995
+      value: 0.968
       objectReference: {fileID: 0}
     - target: {fileID: 5855254598410485367, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
       propertyPath: m_LocalRotation.w
@@ -205,6 +205,10 @@ PrefabInstance:
     - target: {fileID: 8020213856361990683, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
       propertyPath: triggerOnlyOnce
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020213856361990683, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
+      propertyPath: playAudioOnTrigger
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
@@ -671,6 +675,10 @@ PrefabInstance:
       propertyPath: triggerOnlyOnce
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8020213856361990683, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
+      propertyPath: playAudioOnTrigger
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
 --- !u!1001 &987755186
@@ -710,7 +718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5855254598410485367, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.8869995
+      value: 0.887
       objectReference: {fileID: 0}
     - target: {fileID: 5855254598410485367, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
       propertyPath: m_LocalRotation.w
@@ -759,6 +767,10 @@ PrefabInstance:
     - target: {fileID: 8020213856361990683, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
       propertyPath: triggerOnlyOnce
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020213856361990683, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
+      propertyPath: playAudioOnTrigger
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
@@ -845,6 +857,10 @@ PrefabInstance:
     - target: {fileID: 8020213856361990683, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
       propertyPath: triggerOnlyOnce
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020213856361990683, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
+      propertyPath: playAudioOnTrigger
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}

@@ -29,11 +29,13 @@ public class RoomArrangerWithTeleport : RoomArranger
             translation = Vector3.zero;
         }
 
+        Vector3 positionEnd = PlayerController.instance.transform.position + translation;
+
         Debug.Log("Teleporting player: " +
             "fromUpperDoorway=" + isUpperDoorway +
             ", enteringIteration=" + enteredIteration +
             ", positionStart=" + PlayerController.instance.transform.position +
-            ", translation=" + translation +
+            ", positionEnd=" + positionEnd +
             ", rotationStart=" + PlayerController.instance.transform.rotation +
             ", rotation=" + rotation);
 

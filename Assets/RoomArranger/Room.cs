@@ -166,11 +166,13 @@ public class Room : RoomInterface
 
     override protected void ArrangeForRoomTwo()
     {
+        musicSwitcher.PlayMusic(Music.Piano2);
         // TODO: Show/hide/move/adjust whatever items/state is needed for the current room.
     }
 
     override protected void ArrangeForRoomThree()
     {
+        musicSwitcher.PlayMusic(Music.Piano3);
         // TODO: Show/hide/move/adjust whatever items/state is needed for the current room.
     }
 

@@ -242,6 +242,22 @@ PrefabInstance:
       propertyPath: triggerType
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4455648398025188360, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
+      propertyPath: playAudioOnDisabled.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455648398025188360, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
+      propertyPath: playAudioOnDisabled.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 28452787cc1daaf4ba2f795791581667, type: 3}
+    - target: {fileID: 4455648398025188360, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
+      propertyPath: playAudioOnDisabled.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 622ae74e35cc4504c907b620347aa35e, type: 3}
+    - target: {fileID: 4455648398025188360, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
+      propertyPath: playAudioOnDisabled.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: cfb9d0d0f1f1fbc4ba41e273aa217fd6, type: 3}
     - target: {fileID: 4455648398025188361, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
       propertyPath: m_audioClip
       value: 
@@ -402,6 +418,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4455648398025188360, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
+      propertyPath: playAudioOnTrigger
+      value: 
+      objectReference: {fileID: 8300000, guid: ea3be44e49af69049b96962c2c7445e3, type: 3}
     - target: {fileID: 4455648398025188361, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
       propertyPath: m_audioClip
       value: 

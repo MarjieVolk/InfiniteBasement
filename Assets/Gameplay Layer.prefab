@@ -103,6 +103,10 @@ PrefabInstance:
       propertyPath: triggerType
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4455648398025188361, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7bcc167b1d0409849971e7e584939323, type: 3}
     - target: {fileID: 4455648398025188367, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
       propertyPath: m_Name
       value: Picture 2 Trigger
@@ -181,6 +185,10 @@ PrefabInstance:
       propertyPath: triggerType
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4455648398025188361, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 28452787cc1daaf4ba2f795791581667, type: 3}
     - target: {fileID: 4455648398025188367, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
       propertyPath: m_Name
       value: Gramophone Trigger
@@ -259,6 +267,10 @@ PrefabInstance:
       propertyPath: triggerType
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4455648398025188361, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ca4f4da97835a545aabde93d2b850c4, type: 3}
     - target: {fileID: 4455648398025188367, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
       propertyPath: m_Name
       value: Picture 1 Trigger
@@ -333,6 +345,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4455648398025188361, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ea3be44e49af69049b96962c2c7445e3, type: 3}
     - target: {fileID: 4455648398025188367, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
       propertyPath: m_Name
       value: Phone Trigger
@@ -407,6 +423,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4455648398025188361, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c3f41e8bc6d85e54a9bc0f100993854b, type: 3}
     - target: {fileID: 4455648398025188367, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
       propertyPath: m_Name
       value: Cloth Trigger
@@ -485,6 +505,10 @@ PrefabInstance:
       propertyPath: triggerType
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4455648398025188361, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0dd4e67e84b27c541ac7153e2a0ef620, type: 3}
     - target: {fileID: 4455648398025188367, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
       propertyPath: m_Name
       value: Window Trigger

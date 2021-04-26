@@ -71,22 +71,14 @@ abstract public class RoomArranger : MonoBehaviour
         currentRoom.isCompleted = true;
     }
 
-    public void OnTrigger(Triggers triggerType)
+    public void OnTrigger(Triggers triggerType, bool isEnabled)
     {
-        currentRoom.OnTrigger(triggerType);
+        currentRoom.OnTrigger(triggerType, isEnabled);
     }
 
     public void OnTriggerTargetChange(Triggers triggerType, bool isTargeted)
     {
         currentRoom.OnTriggerTargetChange(triggerType, isTargeted);
-    }
-
-    void UnhighlightAllInteractableObjects()
-    {
-        foreach (Transform child in transform)
-        {
-
-        }
     }
 
     public static RoomIteration GetNextRoomIteration(RoomIteration previousIteration)

@@ -203,7 +203,7 @@ public abstract class RoomInterface : MonoBehaviour
         SceneManager.LoadScene("MenuScene");
     }
 
-    abstract public void OnTrigger(Triggers triggerType);
+    abstract public void OnTrigger(Triggers triggerType, bool isEnabled);
 
     abstract protected GameObject GetReferenceToPrologContainer();
 

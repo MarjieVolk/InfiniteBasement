@@ -27,7 +27,7 @@ public class TestRoom : RoomInterface
         // TODO
     }
 
-    override public void OnTrigger(Triggers triggerType)
+    override public void OnTrigger(Triggers triggerType, bool isEnabled)
     {
         switch (triggerType)
         {

@@ -18,6 +18,9 @@ public class Room : RoomInterface
 
     GameObject triggerContainer;
 
+    GameObject grayRoom;
+    GameObject bigCurtains;
+
     void Start()
     {
         stairwellContents = GameObject.Find("StairwellContents");
@@ -30,6 +33,9 @@ public class Room : RoomInterface
         lowerCopyRoomFurnitureContainer = lowerRoomCopyStairwellContents != null ? lowerRoomCopyStairwellContents.transform.Find("Furniture").gameObject : null;
 
         triggerContainer = GameObject.Find("Gameplay");
+
+        grayRoom = stairwellContents.transform.Find("GrayRoom").gameObject;
+        bigCurtains = furnitureContainer.transform.Find("BigCurtains").gameObject;
 
         UnhighlightAllInteractableObjects();
     }
@@ -125,14 +131,19 @@ public class Room : RoomInterface
         }
     }
 
-    override public void OnTrigger(Triggers triggerType)
+    override public void OnTrigger(Triggers triggerType, bool isEnabled)
     {
         switch (triggerType)
         {
             case Triggers.EndDoor:
                 QuitToMenu();
                 break;
-            
+
+            case Triggers.Window:
+                bigCurtains.GetComponent<Animator>().SetTrigger("curtainsOpen");
+                grayRoom.GetComponent<Animator>().SetTrigger("loop1_clear");
+                break;
+
             // TODO: React to individual triggers as needed.
 
             default:

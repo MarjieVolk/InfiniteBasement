@@ -59,6 +59,11 @@ abstract public class RoomArranger : MonoBehaviour
         currentRoom.isCompleted = true;
     }
 
+    public void OnTrigger(Triggers triggerType)
+    {
+        currentRoom.OnTrigger(triggerType);
+    }
+
     public static RoomIteration GetNextRoomIteration(RoomIteration previousIteration)
     {
         switch (previousIteration)

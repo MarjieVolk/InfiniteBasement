@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum RoomIteration
 {
@@ -17,6 +18,21 @@ public enum RoomIteration
 
     // CURRENTLY UNUSED. This represents whatever is shown after leaving the last door, at the end of the game.
     Epilog,
+}
+
+public enum Triggers
+{
+    Unknown,
+
+    StartDoor,
+    EndDoor,
+
+    Gramaphone,
+    Curtain,
+    PhotoCat,
+    PhotoThread,
+
+    // TODO: Add new trigger types as needed.
 }
 
 public abstract class RoomInterface : MonoBehaviour
@@ -45,7 +61,7 @@ public abstract class RoomInterface : MonoBehaviour
 
     }
 
-    public void Arrange(RoomIteration iteration)
+    virtual public void Arrange(RoomIteration iteration)
     {
         Debug.Log("RoomInterface.Arrange");
 
@@ -112,6 +128,13 @@ public abstract class RoomInterface : MonoBehaviour
     {
         mainRoomContainer.SetActive(false);
     }
+
+    protected void QuitToMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
+    }
+
+    abstract public void OnTrigger(Triggers triggerType);
 
     abstract protected GameObject GetReferenceToPrologContainer();
 

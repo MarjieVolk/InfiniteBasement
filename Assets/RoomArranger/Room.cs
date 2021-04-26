@@ -14,6 +14,16 @@ public class Room : RoomInterface
 
     }
 
+    override public void OnTrigger(Triggers triggerType)
+    {
+        switch (triggerType)
+        {
+            // TODO: React to individual triggers.
+            default:
+                break;
+        }
+    }
+
     override protected GameObject GetReferenceToPrologContainer()
     {
         return transform.Find("Prolog").gameObject;

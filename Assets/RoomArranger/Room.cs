@@ -12,10 +12,11 @@ public class Room : RoomInterface
     GameObject furnitureContainer;
     GameObject houseContainer;
 
-
     GameObject upperRoomCopyStairwellContents;
     GameObject lowerRoomCopyStairwellContents;
     GameObject lowerCopyRoomFurnitureContainer;
+
+    GameObject triggerContainer;
 
     void Start()
     {
@@ -27,6 +28,8 @@ public class Room : RoomInterface
         upperRoomCopyStairwellContents = GameObject.Find("UpperRoomCopyStairwellContents");
         lowerRoomCopyStairwellContents = GameObject.Find("LowerRoomCopyStairwellContents");
         lowerCopyRoomFurnitureContainer = lowerRoomCopyStairwellContents != null ? lowerRoomCopyStairwellContents.transform.Find("Furniture").gameObject : null;
+
+        triggerContainer = GameObject.Find("Gameplay");
 
         UnhighlightAllInteractableObjects();
     }
@@ -52,21 +55,26 @@ public class Room : RoomInterface
             return null;
         }
     }
-
-    override protected void UnhighlightAllInteractableObjects()
+    
+    override public GameObject GetTriggerObjectForTrigger(Triggers triggerType)
     {
-        foreach (Triggers triggerType in triggerToObjectName.Keys)
+        if (triggerToTriggerObjectName.ContainsKey(triggerType))
         {
-            string identifier = triggerToObjectName[triggerType];
-            Transform objectTransform = interactableObjectsContainer.transform.Find(identifier);
+            Transform objectTransform = triggerContainer.transform.Find(triggerToTriggerObjectName[triggerType]);
             if (objectTransform != null)
             {
-                SetObjectHighlight(interactableObjectsContainer.transform.Find(identifier).gameObject, false);
+                return objectTransform.gameObject;
             }
             else
             {
-                Debug.LogError("Object for trigger not found: trigger=" + triggerType + ", objectName=" + identifier);
+                Debug.LogError("Trigger object for trigger not found: trigger=" + triggerType + ", objectName=" + triggerToTriggerObjectName[triggerType]);
+                return null;
             }
+        }
+        else
+        {
+            Debug.LogWarning("No trigger object name mapped for trigger type: " + triggerType);
+            return null;
         }
     }
 
@@ -101,6 +109,88 @@ public class Room : RoomInterface
         }
     }
 
+
+    override protected void UnhighlightAllInteractableObjects()
+    {
+        foreach (Triggers triggerType in triggerToObjectName.Keys)
+        {
+            SetObjectHighlight(triggerType, false);
+        }
+    }
+
+    override protected void DeactivateAllInteractableObjects()
+    {
+        foreach (Triggers triggerType in triggerToTriggerObjectName.Keys)
+        {
+            SetTriggerIsActive(triggerType, false);
+        }
+    }
+
+<<<<<<< .mine
+    override protected void UnhighlightAllInteractableObjects()
+    {
+        foreach (Triggers triggerType in triggerToObjectName.Keys)
+        {
+            SetObjectHighlight(triggerType, false);
+        }
+    }
+
+    override protected void DeactivateAllInteractableObjects()
+    {
+        foreach (Triggers triggerType in triggerToTriggerObjectName.Keys)
+        {
+            SetTriggerIsActive(triggerType, false);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+    /** Enable all triggers of the given {@code type}. */
+    public void EnableTriggersOfType(Triggers type) {
+        DefaultTrigger[] defaultTriggers = FindObjectsOfType<DefaultTrigger>();
+        foreach (DefaultTrigger trigger in defaultTriggers)
+        {
+            if (trigger.triggerType == type) {
+                trigger.isEnabled = true;
+            }
+        }
+    }
+    
+    /** Disable all triggers of the given {@code type}. */
+    public void DisableTriggersOfType(Triggers type) {
+        DefaultTrigger[] defaultTriggers = FindObjectsOfType<DefaultTrigger>();
+        foreach (DefaultTrigger trigger in defaultTriggers)
+        {
+            if (trigger.triggerType == type) {
+                trigger.isEnabled = false;
+            }
+        }
+    }
+
+    /** Disable all triggers. */
+    public void DisableAllTriggers() {
+        DefaultTrigger[] defaultTriggers = FindObjectsOfType<DefaultTrigger>();
+        foreach (DefaultTrigger trigger in defaultTriggers)
+        {
+            trigger.isEnabled = false;
+        }
+    }
+
+>>>>>>> .theirs
     override public void OnTrigger(Triggers triggerType)
     {
         switch (triggerType)
@@ -121,6 +211,14 @@ public class Room : RoomInterface
         SetDoorOpen(false, true);
         DisableAllTriggers();
         EnableTriggersOfType(Triggers.Unknown);
+        SetTriggerIsActive(Triggers.StartDoor, true);
+<<<<<<< .mine
+        SetTriggerIsActive(Triggers.StartDoor, true);
+
+=======
+        DisableAllTriggers();
+        EnableTriggersOfType(Triggers.Unknown);
+>>>>>>> .theirs
     }
 
     override protected void ArrangeForRoomTwo()
@@ -137,6 +235,7 @@ public class Room : RoomInterface
     {
         // TODO: Show/hide/move/adjust whatever items/state is needed for the current room.
         SetDoorOpen(false, false);
+        SetTriggerIsActive(Triggers.EndDoor, true);
     }
 
     void SetDoorOpen(bool isOpen, bool isUpperDoor)

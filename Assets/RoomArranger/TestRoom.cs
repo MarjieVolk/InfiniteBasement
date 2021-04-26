@@ -12,6 +12,16 @@ public class TestRoom : RoomInterface
         return null;
     }
 
+    override public GameObject GetTriggerObjectForTrigger(Triggers triggerType)
+    {
+        return null;
+    }
+
+    override protected void DeactivateAllInteractableObjects()
+    {
+        // TODO
+    }
+
     override protected void UnhighlightAllInteractableObjects()
     {
         // TODO

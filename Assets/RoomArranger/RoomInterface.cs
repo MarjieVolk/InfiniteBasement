@@ -52,6 +52,19 @@ public abstract class RoomInterface : MonoBehaviour
 
         // TODO: Add trigger-to-name mappings here as needed.
     };
+    public static Dictionary<Triggers, string> triggerToTriggerObjectName = new Dictionary<Triggers, string>
+    {
+        { Triggers.Phone, "Phone Trigger" },
+        { Triggers.Sponge, "Cloth Trigger" },
+        { Triggers.Gramaphone, "Gramophone Trigger" },
+        { Triggers.Window, "Window Trigger" },
+        { Triggers.Picture1, "Picture 1 Trigger" },
+        { Triggers.Picture2, "Picture 2 Trigger" },
+        { Triggers.StartDoor, "UpperDoorTrigger" },
+        { Triggers.EndDoor, "LowerDoorTrigger" },
+
+        // TODO: Add trigger-to-name mappings here as needed.
+    };
 
     // Which version of the room this currently is.
     public RoomIteration iteration;
@@ -95,6 +108,8 @@ public abstract class RoomInterface : MonoBehaviour
             HideMainRoomContainer();
         }
 
+        DeactivateAllInteractableObjects();
+
         switch (iteration)
         {
             case RoomIteration.Prolog:
@@ -127,23 +142,36 @@ public abstract class RoomInterface : MonoBehaviour
 
     public void OnTriggerTargetChange(Triggers triggerType, bool isTargeted)
     {
+        SetObjectHighlight(triggerType, isTargeted);
+    }
+
+    protected void SetObjectHighlight(Triggers triggerType, bool isHighlighted)
+    {
         GameObject item = GetObjectForTrigger(triggerType);
         if (item == null)
         {
             return;
         }
-        SetObjectHighlight(item, isTargeted);
-    }
-
-    protected void SetObjectHighlight(GameObject item, bool isHighlighted)
-    {
         float enablementValue = isHighlighted ? highlightEnabledValue : highlightDisabledValue;
         item.GetComponent<Renderer>().material.SetFloat(highlightHideShaderPropertyName, enablementValue);
     }
 
+    protected void SetTriggerIsActive(Triggers triggerType, bool isActivated)
+    {
+        GameObject item = GetTriggerObjectForTrigger(triggerType);
+        if (item != null)
+        {
+            item.SetActive(isActivated);
+        }
+    }
+
     abstract public GameObject GetObjectForTrigger(Triggers triggerType);
 
+    abstract public GameObject GetTriggerObjectForTrigger(Triggers triggerType);
+
     abstract protected void UnhighlightAllInteractableObjects();
+
+    abstract protected void DeactivateAllInteractableObjects();
 
     void HidePrologContainer()
     {

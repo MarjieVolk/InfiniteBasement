@@ -45,9 +45,18 @@ public class Room : RoomInterface
 
     override protected void UnhighlightAllInteractableObjects()
     {
-        foreach (Transform child in transform)
+        foreach (Triggers triggerType in triggerToObjectName.Keys)
         {
-            SetObjectHighlight(child.gameObject, false);
+            string identifier = triggerToObjectName[triggerType];
+            Transform objectTransform = interactableObjectsContainer.transform.Find(identifier);
+            if (objectTransform != null)
+            {
+                SetObjectHighlight(interactableObjectsContainer.transform.Find(identifier).gameObject, false);
+            }
+            else
+            {
+                Debug.LogError("Object for trigger not found: trigger=" + triggerType + ", objectName=" + identifier);
+            }
         }
     }
 

@@ -56,8 +56,10 @@ public abstract class RoomInterface : MonoBehaviour
     // Which version of the room this currently is.
     public RoomIteration iteration;
 
-    public float highlightGlintSpeed = 3;
-    private float unhighlightedGlintSpeed = 0;
+    private float highlightEnabledValue = 1;
+    private float highlightDisabledValue = 0;
+
+    public string highlightHideShaderPropertyName = "hide";
 
     // If true, then the next room will be the next iteration, progressing the storyline.
     // If false, then the next room will be the same iteration as this room.
@@ -135,8 +137,8 @@ public abstract class RoomInterface : MonoBehaviour
 
     protected void SetObjectHighlight(GameObject item, bool isHighlighted)
     {
-        float glintSpeed = isHighlighted ? highlightGlintSpeed : unhighlightedGlintSpeed;
-        item.GetComponent<Renderer>().material.SetFloat("GlintSpeed", glintSpeed);
+        float enablementValue = isHighlighted ? highlightEnabledValue : highlightDisabledValue;
+        item.GetComponent<Renderer>().material.SetFloat(highlightHideShaderPropertyName, enablementValue);
     }
 
     abstract public GameObject GetObjectForTrigger(Triggers triggerType);

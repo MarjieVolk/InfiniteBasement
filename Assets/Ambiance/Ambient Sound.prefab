@@ -519,6 +519,7 @@ GameObject:
   - component: {fileID: 6991363211524916280}
   - component: {fileID: 6991363211524916283}
   - component: {fileID: 7340479488546993885}
+  - component: {fileID: 4951171376189390407}
   m_Layer: 0
   m_Name: Ambient Sound
   m_TagString: Untagged
@@ -612,3 +613,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa24f61f90831042812154b9962b61d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4951171376189390407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6991363211524916284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f41a74ce4ebeae34d9ac69b6016e187e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crossFadeDurationSec: 1

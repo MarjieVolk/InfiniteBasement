@@ -419,9 +419,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4455648398025188360, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
+      propertyPath: triggerType
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455648398025188360, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
       propertyPath: playAudioOnTrigger
       value: 
       objectReference: {fileID: 8300000, guid: ea3be44e49af69049b96962c2c7445e3, type: 3}
+    - target: {fileID: 4455648398025188360, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
+      propertyPath: playAudioOnDisabled.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 45e25e8769dad8b4d979cb8cb576ea28, type: 3}
+    - target: {fileID: 4455648398025188360, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
+      propertyPath: playAudioOnDisabled.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ca4f4da97835a545aabde93d2b850c4, type: 3}
     - target: {fileID: 4455648398025188361, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
       propertyPath: m_audioClip
       value: 
@@ -807,6 +819,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4455648398025188360, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
+      propertyPath: triggerType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455648398025188360, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
       propertyPath: playAudioOnTrigger
       value: 
       objectReference: {fileID: 8300000, guid: c22fa78f579f09043b75813540d044eb, type: 3}
@@ -898,7 +914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4455648398025188360, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
       propertyPath: triggerType
-      value: 4
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4455648398025188361, guid: 5b677a871d81a134883563dec159cf7d, type: 3}
       propertyPath: m_audioClip

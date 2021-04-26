@@ -1394,18 +1394,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gameplay
       objectReference: {fileID: 0}
-    - target: {fileID: 2116270614937552218, guid: 65c657b693acb904994474d965f9d557, type: 3}
-      propertyPath: triggerType
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6066978596996731203, guid: 65c657b693acb904994474d965f9d557, type: 3}
-      propertyPath: triggerType
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 7031867770134442036, guid: 65c657b693acb904994474d965f9d557, type: 3}
-      propertyPath: triggerType
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 8838305268320077986, guid: 65c657b693acb904994474d965f9d557, type: 3}
       propertyPath: m_RootOrder
       value: 2

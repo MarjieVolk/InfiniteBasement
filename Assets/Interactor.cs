@@ -4,21 +4,33 @@ using UnityEngine;
 
 public class Interactor : MonoBehaviour
 {
+    [Tooltip("The tooltip/hint that we show to users when hovering over an object.")]
     public CanvasGroup interactionPrompt;
+
+    // Needed to transform world points to screen space.
+    [Tooltip("The player's camera.")]
     public Camera camera;
+
+    [Tooltip("The speed that we should fade in/out the interact tooltip/hint.")]
     public float fadeSpeed = 0.03f;
 
     private InteractTrigger currentTarget;
+    
+    // For fading-out after we're no longer highlighting anything.
     private InteractTrigger previousTarget;
 
-    // Start is called before the first frame update
     void Start()
     {
         interactionPrompt.alpha = 0;
     }
 
-    // Update is called once per frame
     void Update()
+    {
+        renderInteractButton();
+    }
+
+    /** Renders a screenspace tooltip that entices the user to press the interact button. */
+    private void renderInteractButton()
     {
         RectTransform promptTransform = (RectTransform)(interactionPrompt.gameObject.transform);
 
@@ -34,6 +46,7 @@ public class Interactor : MonoBehaviour
                 }
                 else
                 {
+                    // Render to a static spot on the screen?
                     promptTransform.localPosition = new Vector3(-5, -5, 0);
                 }
             }

@@ -197,7 +197,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerOnlyOnce: 0
-  playAudioOnTrigger: {fileID: 4455648398025188361}
+  audioPlayer: {fileID: 4455648398025188361}
+  playAudioOnTrigger: {fileID: 8300000, guid: 0ec0293e5a0828e4fb49e1a2106f9309, type: 3}
+  playAudioOnDisabled:
+  - {fileID: 8300000, guid: 9ca4f4da97835a545aabde93d2b850c4, type: 3}
+  - {fileID: 8300000, guid: 7bcc167b1d0409849971e7e584939323, type: 3}
+  isEnabled: 1
+  triggerType: 0
   interactPromptTarget: {fileID: 1815588269}
 --- !u!23 &1200914319678791919
 MeshRenderer:

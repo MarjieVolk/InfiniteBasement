@@ -4,14 +4,45 @@ using UnityEngine;
 
 public class Room : RoomInterface
 {
+    GameObject interactableObjectsContainer;
+    GameObject furnitureContainer;
+    GameObject houseContainer;
+
     void Start()
     {
-
+        interactableObjectsContainer = transform.Find("InteractableObjects").gameObject;
+        furnitureContainer = transform.Find("Furniture").gameObject;
+        houseContainer = transform.Find("House").gameObject;
     }
 
-    void Update()
+    override public GameObject GetObjectForTrigger(Triggers triggerType)
     {
-
+        string objectName;
+        switch (triggerType)
+        {
+            case Triggers.Gramaphone:
+                objectName = "Gramaphone01";
+                break;
+            case Triggers.Sponge:
+                objectName = "SpongeForCleaning";
+                break;
+            case Triggers.Picture1:
+                objectName = "Picture_1";
+                break;
+            case Triggers.Picture2:
+                objectName = "Picture_2";
+                break;
+            case Triggers.Picture3:
+                objectName = "Picture_3";
+                break;
+            case Triggers.Phone:
+                objectName = "Phone";
+                break;
+            default:
+                Debug.LogError("Unrecognized triggerType: " + triggerType);
+                return null;
+        }
+        return interactableObjectsContainer.transform.Find(objectName).gameObject;
     }
 
     override public void OnTrigger(Triggers triggerType)

@@ -28,6 +28,11 @@ public class InteractTrigger : DefaultTrigger
 
     public void SetIsTargeted(bool isTargeted)
     {
+        bool changed = isTargeted != this.isTargeted;
         this.isTargeted = isTargeted;
+        if (changed)
+        {
+            RoomArranger.instance.OnTriggerTargetChange(triggerType, isTargeted);
+        }
     }
 }

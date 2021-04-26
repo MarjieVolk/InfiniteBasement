@@ -7,6 +7,11 @@ public class TestRoom : RoomInterface
 {
     private Vector3 placeholderDisplacementBetweeDoors = new Vector3(0.375f, -3.52f, 0);
 
+    override public GameObject GetObjectForTrigger(Triggers triggerType)
+    {
+        return null;
+    }
+
     override public void OnTrigger(Triggers triggerType)
     {
         switch (triggerType)

@@ -28,9 +28,11 @@ public enum Triggers
     EndDoor,
 
     Gramaphone,
-    Curtain,
-    PhotoCat,
-    PhotoThread,
+    Sponge,
+    Picture1,
+    Picture2,
+    Picture3,
+    Phone,
 
     // TODO: Add new trigger types as needed.
 }
@@ -50,17 +52,7 @@ public abstract class RoomInterface : MonoBehaviour
     protected GameObject epilogContainer;
     // Wrapper around main-room content. For ease of showing/hiding it.
     protected GameObject mainRoomContainer;
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
-
+    
     virtual public void Arrange(RoomIteration iteration)
     {
         Debug.Log("RoomInterface.Arrange");
@@ -113,6 +105,8 @@ public abstract class RoomInterface : MonoBehaviour
                 break;
         }
     }
+
+    abstract public GameObject GetObjectForTrigger(Triggers triggerType);
 
     void HidePrologContainer()
     {

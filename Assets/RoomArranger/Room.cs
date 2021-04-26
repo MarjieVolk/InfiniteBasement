@@ -12,12 +12,22 @@ public class Room : RoomInterface
     GameObject furnitureContainer;
     GameObject houseContainer;
 
+
+    GameObject upperRoomCopyStairwellContents;
+    GameObject lowerRoomCopyStairwellContents;
+    GameObject lowerCopyRoomFurnitureContainer;
+
     void Start()
     {
         stairwellContents = GameObject.Find("StairwellContents");
         interactableObjectsContainer = stairwellContents.transform.Find("InteractableObjects").gameObject;
         furnitureContainer = stairwellContents.transform.Find("Furniture").gameObject;
         houseContainer = stairwellContents.transform.Find("House").gameObject;
+
+        upperRoomCopyStairwellContents = GameObject.Find("UpperRoomCopyStairwellContents");
+        lowerRoomCopyStairwellContents = GameObject.Find("LowerRoomCopyStairwellContents");
+        lowerCopyRoomFurnitureContainer = lowerRoomCopyStairwellContents != null ? lowerRoomCopyStairwellContents.transform.Find("Furniture").gameObject : null;
+
         UnhighlightAllInteractableObjects();
     }
 
@@ -77,8 +87,7 @@ public class Room : RoomInterface
 
     override protected void ArrangeForRoomOne()
     {
-        // TODO: Consider closing the door (at only one entrance).
-        //SetDoorOpen(false);
+        SetDoorOpen(false, true);
     }
 
     override protected void ArrangeForRoomTwo()
@@ -94,12 +103,19 @@ public class Room : RoomInterface
     override protected void ArrangeForRoomFour()
     {
         // TODO: Show/hide/move/adjust whatever items/state is needed for the current room.
+        SetDoorOpen(false, false);
     }
 
-    void SetDoorOpen(bool isOpen)
+    void SetDoorOpen(bool isOpen, bool isUpperDoor)
     {
+        GameObject container = isUpperDoor ? furnitureContainer : lowerCopyRoomFurnitureContainer;
+        if (container == null)
+        {
+            Debug.LogWarning("Trying to open/close door for non-existent room copy: isUpperDoor=" + isUpperDoor);
+            return;
+        }
         float rotationY = isOpen ? doorOpenRotationY : doorClosedRotationY;
-        furnitureContainer.transform.Find("Door_1").gameObject.transform.rotation = Quaternion.Euler(0, rotationY, 0);
+        container.transform.Find("Door_1").gameObject.transform.rotation = Quaternion.Euler(0, rotationY, 0);
     }
 
 

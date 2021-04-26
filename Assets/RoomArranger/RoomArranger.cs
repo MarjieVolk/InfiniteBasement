@@ -21,6 +21,18 @@ abstract public class RoomArranger : MonoBehaviour
         // Create the first room.
         currentRoomObject = Instantiate(roomPrefab, startPosition, Quaternion.identity);
         currentRoom = currentRoomObject.GetComponent<RoomInterface>();
+
+        StartCoroutine(TriggerDelayedStart());
+    }
+
+    IEnumerator TriggerDelayedStart()
+    {
+        yield return 0;
+        DelayedStart();
+    }
+
+    virtual protected void DelayedStart()
+    {
         currentRoom.Arrange(RoomIteration.One);
     }
 

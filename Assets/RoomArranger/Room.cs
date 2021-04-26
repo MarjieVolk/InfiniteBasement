@@ -18,12 +18,15 @@ public class Room : RoomInterface
 
     GameObject triggerContainer;
 
+    MusicSwitcher musicSwitcher;
+
     void Start()
     {
         stairwellContents = GameObject.Find("StairwellContents");
         interactableObjectsContainer = stairwellContents.transform.Find("InteractableObjects").gameObject;
         furnitureContainer = stairwellContents.transform.Find("Furniture").gameObject;
         houseContainer = stairwellContents.transform.Find("House").gameObject;
+        musicSwitcher = GameObject.Find("Ambient Sound").transform.GetComponent<MusicSwitcher>();
 
         upperRoomCopyStairwellContents = GameObject.Find("UpperRoomCopyStairwellContents");
         lowerRoomCopyStairwellContents = GameObject.Find("LowerRoomCopyStairwellContents");
@@ -146,6 +149,7 @@ public class Room : RoomInterface
         DisableAllTriggers();
         EnableTriggersOfType(Triggers.Unknown);
         SetTriggerIsActive(Triggers.StartDoor, true);
+        musicSwitcher.PlayMusic(Music.Piano1);
     }
 
     override protected void ArrangeForRoomTwo()

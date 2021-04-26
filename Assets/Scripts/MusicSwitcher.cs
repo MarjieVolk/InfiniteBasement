@@ -39,7 +39,7 @@ public class MusicSwitcher : MonoBehaviour
         PlayMusic(GetNextType(currentType));
     }
 
-    void PlayMusic(Music type)
+    public void PlayMusic(Music type)
     {
         if (type == currentType)
         {
@@ -55,13 +55,13 @@ public class MusicSwitcher : MonoBehaviour
         if (previousType != Music.None)
         {
             // Cross fade.}
-            FadeAudioSource.StartFade(previousSource, crossFadeDurationSec, 0);
-            FadeAudioSource.StartFade(currentSource, crossFadeDurationSec, 1);
+            StartCoroutine(FadeAudioSource.StartFade(previousSource, crossFadeDurationSec, 0));
+            StartCoroutine(FadeAudioSource.StartFade(currentSource, crossFadeDurationSec, 1));
         }
         else
         {
             // Start immediately.
-            FadeAudioSource.StartFade(currentSource, 0.01f, 1);
+            StartCoroutine(FadeAudioSource.StartFade(currentSource, 0.01f, 1));
         }
     }
 

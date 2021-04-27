@@ -145,13 +145,16 @@ public class Room : RoomInterface
                 break;
 
             case Triggers.Window:
-                bigCurtains.GetComponent<Animator>().SetTrigger("curtainsOpen");
-                grayRoom.GetComponent<Animator>().SetTrigger("loop1_clear");
-                EnableTriggersOfType(Triggers.Gramophone);
+                if (iteration == RoomIteration.One && isEnabled)
+                {
+                    bigCurtains.GetComponent<Animator>().SetTrigger("curtainsOpen");
+                    grayRoom.GetComponent<Animator>().SetTrigger("loop1_clear");
+                    EnableTriggersOfType(Triggers.Gramophone);
+                }
                 break;
 
             case Triggers.Gramophone:
-                if (iteration == RoomIteration.One)
+                if (iteration == RoomIteration.One && isEnabled)
                 {
                     musicSwitcher.PlayMusic(Music.Piano1);
                     PlayerController.instance.MarkRoomAsCompleted();

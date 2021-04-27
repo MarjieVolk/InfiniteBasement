@@ -42,6 +42,8 @@ public enum Triggers
     UpperRoomGoBack,
     LowerRoomGoBack,
     OpenTheStartDoor,
+    MaybeOpenTheEndDoor,
+    MaybeCloseTheEndDoor,
 
     // TODO: Add new trigger types as needed.
 }
@@ -96,7 +98,7 @@ public abstract class RoomInterface : MonoBehaviour
 
     virtual public void Arrange(RoomIteration iteration)
     {
-        Debug.Log("RoomInterface.Arrange");
+        Debug.Log("** RoomInterface.Arrange: " + iteration);
 
         this.iteration = iteration;
 

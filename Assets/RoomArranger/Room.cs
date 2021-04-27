@@ -160,8 +160,19 @@ public class Room : RoomInterface
                 break;
 
             case Triggers.OpenTheStartDoor:
-                Debug.Log("foo");
                 SetDoorOpen(true, true);
+                break;
+            case Triggers.MaybeOpenTheEndDoor:
+                if (iteration == RoomIteration.Three && isCompleted)
+                {
+                    SetDoorOpen(true, false);
+                }
+                break;
+            case Triggers.MaybeCloseTheEndDoor:
+                if (iteration == RoomIteration.Three && isCompleted)
+                {
+                    SetDoorOpen(false, false);
+                }
                 break;
 
             case Triggers.Window:
@@ -227,7 +238,7 @@ public class Room : RoomInterface
 
     override protected void OnRoomCompleted()
     {
-        Debug.Log("OnRoomCompleted: " + iteration);
+        Debug.Log("** OnRoomCompleted: " + iteration);
 
         isCompleted = true;
 

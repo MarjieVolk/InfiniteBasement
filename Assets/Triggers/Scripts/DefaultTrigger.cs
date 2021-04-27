@@ -64,7 +64,9 @@ public abstract class DefaultTrigger : Trigger
             RoomArranger.instance.OnTrigger(triggerType);
         }
         // TODO: Bad hack, no time
-        else if (triggerType == Triggers.OpenTheStartDoor)
+        else if (triggerType == Triggers.OpenTheStartDoor ||
+            triggerType == Triggers.MaybeOpenTheEndDoor ||
+            triggerType == Triggers.MaybeCloseTheEndDoor)
         {
             RoomArranger.instance.OnTrigger(triggerType);
         }

@@ -52,8 +52,8 @@ public abstract class RoomInterface : MonoBehaviour
     {
         { Triggers.Gramophone, "Gramophone01/Gramophone" },
         { Triggers.Sponge, "Sponge_for_cleaning" },
-        { Triggers.Picture1, "Picture_1" },
-        { Triggers.Picture2, "Picture_2" },
+        { Triggers.Picture1, "Picture_2" }, // Intentionally swapped, known bug
+        { Triggers.Picture2, "Picture_1" },
         { Triggers.Picture3, "Picture_3" },
         { Triggers.Phone, "Phone" },
 
@@ -67,6 +67,7 @@ public abstract class RoomInterface : MonoBehaviour
         { Triggers.Window, "Window Trigger" },
         { Triggers.Picture1, "Picture 1 Trigger" },
         { Triggers.Picture2, "Picture 2 Trigger" },
+        { Triggers.Picture3, "Picture 3 Trigger" },
         { Triggers.StartDoor, "UpperDoorTrigger" },
         { Triggers.EndDoor, "LowerDoorTrigger" },
 

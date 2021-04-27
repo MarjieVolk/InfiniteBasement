@@ -151,7 +151,11 @@ public class Room : RoomInterface
                 break;
 
             case Triggers.Gramophone:
-                musicSwitcher.PlayMusic(Music.Piano1);
+                if (iteration == RoomIteration.One)
+                {
+                    musicSwitcher.PlayMusic(Music.Piano1);
+                    PlayerController.instance.MarkRoomAsCompleted();
+                }
                 break;
 
             case Triggers.OpenTheStartDoor:
@@ -168,7 +172,7 @@ public class Room : RoomInterface
         if (!hasStartDoorEverBeenClosed)
         {
             hasStartDoorEverBeenClosed = true;
-            //SetDoorOpen(false, true);
+            SetDoorOpen(false, true);
         }
         DisableAllTriggers();
         EnableTriggersOfType(Triggers.Unknown);

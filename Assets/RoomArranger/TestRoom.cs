@@ -96,25 +96,30 @@ public class TestRoom : RoomInterface
         ShowNumber(objectName);
     }
 
+    override protected void OnRoomCompleted()
+    {
+
+    }
+
     override protected void ArrangeForRoomOne()
     {
-        PlayerController.instance.MarkRoomAsCompleted();
+        OnRoomCompleted();
         SetStartDoorVisible(true);
     }
 
     override protected void ArrangeForRoomTwo()
     {
-        PlayerController.instance.MarkRoomAsCompleted();
+        OnRoomCompleted();
     }
 
     override protected void ArrangeForRoomThree()
     {
-        PlayerController.instance.MarkRoomAsCompleted();
+        OnRoomCompleted();
     }
 
     override protected void ArrangeForRoomFour()
     {
-        PlayerController.instance.MarkRoomAsCompleted();
+        OnRoomCompleted();
         SetEndDoorVisible(true);
     }
 

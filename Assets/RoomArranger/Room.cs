@@ -36,8 +36,8 @@ public class Room : RoomInterface
         houseContainer = stairwellContents.transform.Find("House").gameObject;
         musicSwitcher = GameObject.Find("Ambient Sound").transform.GetComponent<MusicSwitcher>();
 
-        upperRoomCopyStairwellContents = GameObject.Find("UpperRoomCopyStairwellContents");
-        lowerRoomCopyStairwellContents = GameObject.Find("LowerRoomCopyStairwellContents");
+        upperRoomCopyStairwellContents = GameObject.Find("DummyRoomTop");
+        lowerRoomCopyStairwellContents = GameObject.Find("DummyRoomBottom");
         lowerCopyRoomFurnitureContainer = lowerRoomCopyStairwellContents != null ? lowerRoomCopyStairwellContents.transform.Find("Furniture").gameObject : null;
 
         triggerContainer = GameObject.Find("Gameplay");
@@ -208,18 +208,7 @@ public class Room : RoomInterface
             case Triggers.Phone:
                 SetTriggerIsActive(Triggers.EndDoor, true);
                 EnableTriggersOfType(Triggers.EndDoor);
-
-                //SetDoorOpen(false, false);
-
-                // TODO: Theoretically SetDoorOpen should make the exit door be closed,
-                // but it does not.  This is a replacement for that.  I made a separate 
-                // ClosedExitDoor object in the scene which I am turning on.
-                GameObject doorObject = GetObjectForTrigger(Triggers.EndDoor);
-                if (doorObject != null)
-                {
-                    doorObject.GetComponent<MeshRenderer>().enabled = true;
-                    doorObject.GetComponent<BoxCollider>().enabled = true;
-                }
+                OnRoomCompleted();
                 break;
 
             default:
@@ -252,6 +241,7 @@ public class Room : RoomInterface
                 break;
             case RoomIteration.Three:
                 musicSwitcher.PlayMusic(Music.Piano3);
+                SetDoorOpen(false, false);
                 break;
             case RoomIteration.Four:
                 musicSwitcher.PlayMusic(Music.Piano4);
@@ -305,14 +295,26 @@ public class Room : RoomInterface
 
     public void SetDoorOpen(bool isOpen, bool isUpperDoor)
     {
-        GameObject container = isUpperDoor ? furnitureContainer : lowerCopyRoomFurnitureContainer;
-        if (container == null)
+        if (!isUpperDoor)
         {
-            Debug.LogWarning("Trying to open/close door for non-existent room copy: isUpperDoor=" + isUpperDoor);
-            return;
+            GameObject doorObject = GetObjectForTrigger(Triggers.EndDoor);
+            if (doorObject != null)
+            {
+                doorObject.GetComponent<MeshRenderer>().enabled = true;
+                doorObject.GetComponent<BoxCollider>().enabled = true;
+            }
         }
-        float rotationY = isOpen ? doorOpenRotationY : doorClosedRotationY;
-        container.transform.Find("Door_1").gameObject.transform.rotation = Quaternion.Euler(0, rotationY, 0);
+        else
+        {
+            GameObject container = isUpperDoor ? furnitureContainer : lowerCopyRoomFurnitureContainer;
+            if (container == null)
+            {
+                Debug.LogWarning("Trying to open/close door for non-existent room copy: isUpperDoor=" + isUpperDoor);
+                return;
+            }
+            float rotationY = isOpen ? doorOpenRotationY : doorClosedRotationY;
+            container.transform.Find("Door_1").gameObject.transform.rotation = Quaternion.Euler(0, rotationY, 0);
+        }
     }
 
     public void TriggerAnimation(string animationName, Animator[] animatorCopies)

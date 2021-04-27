@@ -151,28 +151,27 @@ public class Room : RoomInterface
                 break;
 
             case Triggers.Window:
-                if (iteration == RoomIteration.One)
-                {
-                    bigCurtains.GetComponent<Animator>().SetTrigger("curtainsOpen");
-                    grayRoom.GetComponent<Animator>().SetTrigger("loop1_clear");
-                    EnableTriggersOfType(Triggers.Gramophone);
-                }
+                bigCurtains.GetComponent<Animator>().SetTrigger("curtainsOpen");
+                grayRoom.GetComponent<Animator>().SetTrigger("loop1_clear");
+                EnableTriggersOfType(Triggers.Gramophone);
                 break;
 
             case Triggers.Gramophone:
-                musicSwitcher.PlayMusic(Music.Piano1);
-                // TODO: Remove me after setting up room completion here.
-                EnableTriggersOfType(Triggers.Sponge);
+                if (iteration == RoomIteration.One)
+                {
+                    musicSwitcher.PlayMusic(Music.Piano1);
+                    PlayerController.instance.MarkRoomAsCompleted();
+                }
                 break;
 
             case Triggers.Sponge:
                 EnableTriggersOfType(Triggers.Picture3);
-                Destroy(GetObjectForTrigger(Triggers.Sponge));
-                Destroy(GetTriggerObjectForTrigger(Triggers.Sponge));
                 break;
 
             case Triggers.Picture3:
                 EnableTriggersOfType(Triggers.Picture1);
+                Destroy(GetObjectForTrigger(Triggers.Sponge));
+                Destroy(GetTriggerObjectForTrigger(Triggers.Sponge));
                 break;
 
             case Triggers.Picture1:
@@ -181,7 +180,10 @@ public class Room : RoomInterface
 
             case Triggers.Picture2:
                 // TODO: Remove me after setting up room completion here.
-                EnableTriggersOfType(Triggers.Phone);
+                if (iteration == RoomIteration.Two)
+                {
+                    PlayerController.instance.MarkRoomAsCompleted();
+                }
                 break;
 
             default:

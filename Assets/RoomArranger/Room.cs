@@ -142,6 +142,7 @@ public class Room : RoomInterface
         switch (triggerType)
         {
             case Triggers.EndDoor:
+                AmbientNoiseSwitcher.instance.PlayBackgroundNoise(BackgroundNoise.Outdoors);
                 PlayerController.instance.FadeToMenu();
                 break;
 
@@ -201,6 +202,7 @@ public class Room : RoomInterface
         EnableTriggersOfType(Triggers.Unknown);
         EnableTriggersOfType(Triggers.Window);
         SetTriggerIsActive(Triggers.StartDoor, true);
+        AmbientNoiseSwitcher.instance.PlayBackgroundNoise(BackgroundNoise.Basement);
     }
 
     override protected void ArrangeForRoomTwo()

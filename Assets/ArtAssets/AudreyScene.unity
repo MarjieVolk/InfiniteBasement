@@ -470,7 +470,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2088827176364034095, guid: 22c2b1b310cb409448db8c3f49f51380, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2088827176364034095, guid: 22c2b1b310cb409448db8c3f49f51380, type: 3}
+      propertyPath: m_TagString
+      value: RoomAnimator
       objectReference: {fileID: 0}
     - target: {fileID: 2088827176377507339, guid: 22c2b1b310cb409448db8c3f49f51380, type: 3}
       propertyPath: m_Enabled
@@ -546,18 +550,6 @@ PrefabInstance:
     - target: {fileID: 3463037435956638801, guid: 47468005a1e5f954baefde74cba2f71c, type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3463037435956638801, guid: 47468005a1e5f954baefde74cba2f71c, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3463037435956638801, guid: 47468005a1e5f954baefde74cba2f71c, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3463037435956638801, guid: 47468005a1e5f954baefde74cba2f71c, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3463037435956638801, guid: 47468005a1e5f954baefde74cba2f71c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1154,7 +1146,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2088827176364034095, guid: 22c2b1b310cb409448db8c3f49f51380, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2088827176364034095, guid: 22c2b1b310cb409448db8c3f49f51380, type: 3}
+      propertyPath: m_TagString
+      value: RoomAnimator
       objectReference: {fileID: 0}
     - target: {fileID: 2088827176377507339, guid: 22c2b1b310cb409448db8c3f49f51380, type: 3}
       propertyPath: m_Enabled
@@ -1432,6 +1428,10 @@ PrefabInstance:
     - target: {fileID: 2088827176230267583, guid: 22c2b1b310cb409448db8c3f49f51380, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.726
+      objectReference: {fileID: 0}
+    - target: {fileID: 2088827176364034095, guid: 22c2b1b310cb409448db8c3f49f51380, type: 3}
+      propertyPath: m_TagString
+      value: RoomAnimator
       objectReference: {fileID: 0}
     - target: {fileID: 2088827176377507339, guid: 22c2b1b310cb409448db8c3f49f51380, type: 3}
       propertyPath: m_Enabled

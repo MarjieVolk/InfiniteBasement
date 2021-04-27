@@ -23,6 +23,8 @@ public class Room : RoomInterface
 
     MusicSwitcher musicSwitcher;
 
+    static bool hasStartDoorEverBeenClosed = false;
+
     void Start()
     {
         stairwellContents = GameObject.Find("StairwellContents");
@@ -152,6 +154,10 @@ public class Room : RoomInterface
                 musicSwitcher.PlayMusic(Music.Piano1);
                 break;
 
+            case Triggers.OpenTheStartDoor:
+                SetDoorOpen(true, true);
+                break;
+
             default:
                 break;
         }
@@ -159,8 +165,11 @@ public class Room : RoomInterface
 
     override protected void ArrangeForRoomOne()
     {
-        // TODO: Add this back after fixing things when teleporting forward into room One from room One.
-        //SetDoorOpen(false, true);
+        if (!hasStartDoorEverBeenClosed)
+        {
+            hasStartDoorEverBeenClosed = true;
+            //SetDoorOpen(false, true);
+        }
         DisableAllTriggers();
         EnableTriggersOfType(Triggers.Unknown);
         EnableTriggersOfType(Triggers.Window);

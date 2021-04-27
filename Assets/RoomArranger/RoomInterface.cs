@@ -36,6 +36,13 @@ public enum Triggers
 
     Window,
 
+    // Teleport stuff.
+    UpperRoomExit,
+    LowerRoomExit,
+    UpperRoomGoBack,
+    LowerRoomGoBack,
+    OpenTheStartDoor,
+
     // TODO: Add new trigger types as needed.
 }
 

@@ -232,6 +232,6 @@ public class PlayerController : MonoBehaviour
 
     public float GetRadius()
     {
-        return characterController.radius;
+        return characterController.radius * transform.localScale.x;
     }
 }

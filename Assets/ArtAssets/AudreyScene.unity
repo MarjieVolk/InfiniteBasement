@@ -195,6 +195,10 @@ PrefabInstance:
       value: LowerDoorExitTrigger
       objectReference: {fileID: 0}
     - target: {fileID: 8020213856361990683, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
+      propertyPath: triggerType
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020213856361990683, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
       propertyPath: isUpperDoorway
       value: 0
       objectReference: {fileID: 0}
@@ -664,6 +668,10 @@ PrefabInstance:
       value: UpperDoorGoBackTrigger
       objectReference: {fileID: 0}
     - target: {fileID: 8020213856361990683, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
+      propertyPath: triggerType
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020213856361990683, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
       propertyPath: isGoBackTrigger
       value: 1
       objectReference: {fileID: 0}
@@ -751,6 +759,10 @@ PrefabInstance:
     - target: {fileID: 6018415633636241795, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
       propertyPath: m_Name
       value: LowerDoorGoBackTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020213856361990683, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
+      propertyPath: triggerType
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8020213856361990683, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
       propertyPath: isUpperDoorway
@@ -849,6 +861,10 @@ PrefabInstance:
     - target: {fileID: 6018415633636241795, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
       propertyPath: m_Name
       value: UpperDoorExitTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020213856361990683, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
+      propertyPath: triggerType
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8020213856361990683, guid: 39e2a6430b004c74a89ed48688a50e83, type: 3}
       propertyPath: outwardNormal.z

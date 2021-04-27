@@ -69,3 +69,6 @@ connectwebgl.zip
 # can torrent these instead, see discord.
 Assets/Modular Houses*
 Assets/House_Furniture_Pack*
+
+# Our builds are too big for non-LFS anymore.
+WebGL Builds

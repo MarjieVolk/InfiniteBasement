@@ -53,12 +53,12 @@ public abstract class DefaultTrigger : Trigger
             audioPlayer.clip = playAudioOnTrigger;
             audioPlayer.Play();
             triggered =  true;
+            // We don't want the object to trigger unless it's enabled, else the player can skip levels.
+            RoomArranger.instance.OnTrigger(triggerType, isEnabled);
         } else if (!isEnabled && playAudioOnDisabled.Length > 0) {
             audioPlayer.clip = playAudioOnDisabled[numTimesDisabled++ % playAudioOnDisabled.Length];
             audioPlayer.Play();
         }
-
-        RoomArranger.instance.OnTrigger(triggerType, isEnabled);
     }
 
     // Start is called before the first frame update

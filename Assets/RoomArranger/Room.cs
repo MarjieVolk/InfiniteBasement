@@ -45,6 +45,11 @@ public class Room : RoomInterface
 
         UnhighlightAllInteractableObjects();
         DisableAllTriggers();
+
+        foreach (Renderer renderer in GameObject.FindObjectsOfType<Renderer>())
+        {
+            renderer.material.SetFloat(highlightHideShaderPropertyName, highlightDisabledValue);
+        }
     }
 
     override public GameObject GetObjectForTrigger(Triggers triggerType)

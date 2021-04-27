@@ -79,7 +79,7 @@ public abstract class RoomInterface : MonoBehaviour
     public RoomIteration iteration;
 
     private float highlightEnabledValue = 1;
-    private float highlightDisabledValue = 0;
+    protected float highlightDisabledValue = 0;
 
     public string highlightHideShaderPropertyName = "hide";
 

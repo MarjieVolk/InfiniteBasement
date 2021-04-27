@@ -568,7 +568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeGroup: {fileID: 531524701}
-  foregroundImage: {fileID: 515819686}
+  foregroundGroup: {fileID: 515819688}
   fadeSpeed: 1
 --- !u!1 &460321571
 GameObject:
@@ -668,6 +668,7 @@ GameObject:
   - component: {fileID: 515819685}
   - component: {fileID: 515819687}
   - component: {fileID: 515819686}
+  - component: {fileID: 515819688}
   m_Layer: 0
   m_Name: WhiteForeground
   m_TagString: Untagged
@@ -732,6 +733,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515819684}
   m_CullTransparentMesh: 1
+--- !u!225 &515819688
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515819684}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &531524699
 GameObject:
   m_ObjectHideFlags: 0

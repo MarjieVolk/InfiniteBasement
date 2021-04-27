@@ -17,12 +17,6 @@ public class MenuSingleton : MonoBehaviour
     {
         Application.OpenURL(url);
     }
-
-    public void StartGame()
-    {
-        // TODO: Load the real scene whatever that is
-        SceneManager.LoadScene("AudreyScene");
-    }
     
     public void StartFadeOut()
     {
@@ -33,8 +27,10 @@ public class MenuSingleton : MonoBehaviour
     {
         if (fadeGroup.alpha > 0.0f) {
             fadeGroup.alpha -= fadeSpeed * Time.deltaTime;
-        } else {
-            StartGame();
+        }
+        else
+        {
+            SceneManager.LoadScene("AudreyScene");
         }
     }
 

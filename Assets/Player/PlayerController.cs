@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Stopwatch = System.Diagnostics.Stopwatch;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -51,6 +52,8 @@ public class PlayerController : MonoBehaviour
     public bool hasMovedSinceTeleporting = false;
     public bool lastExitedUpperDoor = false;
 
+    public Image fadeOutImage;
+
     void Start()
     {
         PlayerController.instance = this;
@@ -65,6 +68,8 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         // Hide the capsule that's rendered for dev-purposes in the editor.
         GameObject.Find("DevIndicator").SetActive(false);
+
+        fadeOutImage.CrossFadeAlpha(0, 1, false);
     }
 
     void Update()

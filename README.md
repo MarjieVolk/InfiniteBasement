@@ -1,8 +1,14 @@
 # The Before Times
 
-> _**[Live demo](https://marjievolk.github.io/InfiniteBasement)**_
+<p align="center">
+    <a href="https://levilindsey.itch.io/the-before-times"><img
+        src="cover-art.png"
+        alt="'The Before Times'"></a>
+</p>
 
-This game was made for [Ludum Dare 48](https://ldjam.com/events/ludum-dare/48).
+> _**[Play the game!](https://levilindsey.itch.io/the-before-times)**_
+
+This game was made for [Ludum Dare 48](https://ldjam.com/events/ludum-dare/48/the-before-times).
 
 ## Controls
 
@@ -10,11 +16,11 @@ This game was made for [Ludum Dare 48](https://ldjam.com/events/ludum-dare/48).
 -   Mouse to control camera.
 -   E/left-click to interact with things.
 
-## Tools and assets used
+## Our team
 
--   [Unity](https://unity.com): Game engine.
--   TODO
-
-## Licenses
-
--   TODO
+-   **Levi Lindsey** - Developer - [levi.dev](https://levi.dev)
+-   **Audrey Meyer** - Art/VFX - [artstation.com/ochopika](https://artstation.com/ochopika)
+-   **Wesley Meyer** - Music - [soundcloud.app.goo.gl/2JUNKojfec3rW3LM7](https://soundcloud.app.goo.gl/2JUNKojfec3rW3LM7)
+-   **Ross Sauby** - Designer - [rosssauby.com](http://rosssauby.com)
+-   **Marjie Volk** - Developer
+-   **Steven Weiss** - Developer

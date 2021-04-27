@@ -71,9 +71,9 @@ abstract public class RoomArranger : MonoBehaviour
         currentRoom.isCompleted = true;
     }
 
-    public void OnTrigger(Triggers triggerType, bool isEnabled)
+    public void OnTrigger(Triggers triggerType)
     {
-        currentRoom.OnTrigger(triggerType, isEnabled);
+        currentRoom.OnTrigger(triggerType);
     }
 
     public void OnTriggerTargetChange(Triggers triggerType, bool isTargeted)

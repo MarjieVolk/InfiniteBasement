@@ -52,12 +52,21 @@ public abstract class DefaultTrigger : Trigger
         if (isEnabled && playAudioOnTrigger) {
             audioPlayer.clip = playAudioOnTrigger;
             audioPlayer.Play();
-            triggered =  true;
-            // We don't want the object to trigger unless it's enabled, else the player can skip levels.
-            RoomArranger.instance.OnTrigger(triggerType, isEnabled);
         } else if (!isEnabled && playAudioOnDisabled.Length > 0) {
             audioPlayer.clip = playAudioOnDisabled[numTimesDisabled++ % playAudioOnDisabled.Length];
             audioPlayer.Play();
+        }
+
+        if (isEnabled)
+        {
+            triggered = true;
+            // We don't want the object to trigger unless it's enabled, else the player can skip levels.
+            RoomArranger.instance.OnTrigger(triggerType);
+        }
+        // TODO: Bad hack, no time
+        else if (triggerType == Triggers.OpenTheStartDoor)
+        {
+            RoomArranger.instance.OnTrigger(triggerType);
         }
     }
 

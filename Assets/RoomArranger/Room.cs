@@ -136,7 +136,7 @@ public class Room : RoomInterface
         }
     }
 
-    override public void OnTrigger(Triggers triggerType, bool isEnabled)
+    override public void OnTrigger(Triggers triggerType)
     {
         switch (triggerType)
         {
@@ -145,7 +145,7 @@ public class Room : RoomInterface
                 break;
 
             case Triggers.Window:
-                if (iteration == RoomIteration.One && isEnabled)
+                if (iteration == RoomIteration.One)
                 {
                     bigCurtains.GetComponent<Animator>().SetTrigger("curtainsOpen");
                     grayRoom.GetComponent<Animator>().SetTrigger("loop1_clear");
@@ -154,7 +154,7 @@ public class Room : RoomInterface
                 break;
 
             case Triggers.Gramophone:
-                if (iteration == RoomIteration.One && isEnabled)
+                if (iteration == RoomIteration.One)
                 {
                     musicSwitcher.PlayMusic(Music.Piano1);
                     PlayerController.instance.MarkRoomAsCompleted();
@@ -162,6 +162,7 @@ public class Room : RoomInterface
                 break;
 
             case Triggers.OpenTheStartDoor:
+                Debug.Log("foo");
                 SetDoorOpen(true, true);
                 break;
 

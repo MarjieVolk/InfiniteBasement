@@ -35,7 +35,7 @@ public class TestRoom : RoomInterface
             case Triggers.StartDoor:
                 break;
             case Triggers.EndDoor:
-                QuitToMenu();
+                PlayerController.instance.FadeToMenu();
                 break;
             default:
                 break;

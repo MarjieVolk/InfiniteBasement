@@ -142,7 +142,7 @@ public class Room : RoomInterface
         switch (triggerType)
         {
             case Triggers.EndDoor:
-                QuitToMenu();
+                PlayerController.instance.FadeToMenu();
                 break;
 
             case Triggers.OpenTheStartDoor:
@@ -216,6 +216,15 @@ public class Room : RoomInterface
         musicSwitcher.PlayMusic(Music.Piano3);
         EnableTriggersOfType(Triggers.Phone);
         SetTriggerIsActive(Triggers.EndDoor, true);
+        EnableTriggersOfType(Triggers.EndDoor);
+
+        GameObject doorObject = GetObjectForTrigger(Triggers.EndDoor);
+        if (doorObject != null)
+        {
+            doorObject.GetComponent<MeshRenderer>().enabled = true;
+            doorObject.GetComponent<BoxCollider>().enabled = true;
+        }
+
         grayRoom.GetComponent<Animator>().SetTrigger("loop3_clear");
         // TODO: Show/hide/move/adjust whatever items/state is needed for the current room.
     }

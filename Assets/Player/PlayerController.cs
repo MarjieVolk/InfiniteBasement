@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Stopwatch = System.Diagnostics.Stopwatch;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -54,6 +55,8 @@ public class PlayerController : MonoBehaviour
 
     public Image fadeOutImage;
 
+    private float timeToGoToMenu = -1;
+
     void Start()
     {
         PlayerController.instance = this;
@@ -87,6 +90,18 @@ public class PlayerController : MonoBehaviour
             }
             hasMovedSinceTeleporting = true;
         }
+
+        if (timeToGoToMenu > 0 && timeToGoToMenu <= Time.time)
+        {
+            SceneManager.LoadScene("MenuScene");
+        }
+    }
+
+    public void FadeToMenu()
+    {
+        fadeOutImage.color = Color.white;
+        fadeOutImage.CrossFadeAlpha(1, 1, false);
+        timeToGoToMenu = Time.time + 1;
     }
 
     void Translate()

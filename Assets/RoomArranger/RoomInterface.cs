@@ -56,6 +56,7 @@ public abstract class RoomInterface : MonoBehaviour
         { Triggers.Picture2, "Picture_1" },
         { Triggers.Picture3, "Picture_3" },
         { Triggers.Phone, "Phone" },
+        { Triggers.EndDoor, "ClosedExitDoor" }
 
         // TODO: Add trigger-to-name mappings here as needed.
     };
@@ -204,11 +205,6 @@ public abstract class RoomInterface : MonoBehaviour
         {
             mainRoomContainer.SetActive(false);
         }
-    }
-
-    protected void QuitToMenu()
-    {
-        SceneManager.LoadScene("MenuScene");
     }
 
     abstract public void OnTrigger(Triggers triggerType);

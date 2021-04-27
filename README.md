@@ -10,7 +10,7 @@ _Descend out of the darkness in our first-person atmospheric game._
 
 > _**[Play the game!](https://levilindsey.itch.io/the-before-times)**_
 
-This game was made for [Ludum Dare 48](https://ldjam.com/events/ludum-dare/48/the-before-times).
+> [Made for Ludum Dare 48](https://ldjam.com/events/ludum-dare/48/the-before-times).
 
 ## Controls
 

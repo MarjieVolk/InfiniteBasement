@@ -169,6 +169,7 @@ public class Room : RoomInterface
                 }
                 break;
             case Triggers.MaybeCloseTheEndDoor:
+                Debug.Log("Triggers.MaybeCloseTheEndDoor: iteration=" + iteration + ", isCompleted=" + isCompleted);
                 if (iteration == RoomIteration.Three && isCompleted)
                 {
                     SetDoorOpen(false, false);
@@ -195,8 +196,7 @@ public class Room : RoomInterface
                 // Hide the sponge.
                 GetObjectForTrigger(Triggers.Sponge).SetActive(false);
                 // Deactivate the trigger after the voice-over finishes playing.
-                var task = Task.Run(() => SetTriggerIsActive(Triggers.Sponge, false));
-                task.Wait(TimeSpan.FromSeconds(1.8));
+                Destroy(GetTriggerObjectForTrigger(triggerType), 1.8f);
                 break;
 
             case Triggers.Picture1:
@@ -206,8 +206,6 @@ public class Room : RoomInterface
                 break;
 
             case Triggers.Phone:
-                SetTriggerIsActive(Triggers.EndDoor, true);
-                EnableTriggersOfType(Triggers.EndDoor);
                 OnRoomCompleted();
                 break;
 
@@ -304,6 +302,11 @@ public class Room : RoomInterface
             {
                 doorObject.GetComponent<MeshRenderer>().enabled = !isOpen;
                 doorObject.GetComponent<BoxCollider>().enabled = !isOpen;
+            }
+            if (!isOpen)
+            {
+                SetTriggerIsActive(Triggers.EndDoor, true);
+                EnableTriggersOfType(Triggers.EndDoor);
             }
         }
         else

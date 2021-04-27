@@ -44,6 +44,14 @@ abstract public class RoomArranger : MonoBehaviour
         {
             currentRoom.isCompleted = false;
             nextIteration = GetNextRoomIteration(previousIteration);
+
+            // TODO: Quick hack; shouldn't need this.
+            if (nextIteration == RoomIteration.Four)
+            {
+                Debug.LogWarning("Bug here!");
+                currentRoom.isCompleted = true;
+                nextIteration = RoomIteration.Three;
+            }
         }
         else
         {

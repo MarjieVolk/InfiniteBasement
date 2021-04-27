@@ -295,13 +295,15 @@ public class Room : RoomInterface
 
     public void SetDoorOpen(bool isOpen, bool isUpperDoor)
     {
+        Debug.Log("Room.SetDoorOpen: isOpen=" + isOpen + ", isUpperDoor=" + isUpperDoor);
+
         if (!isUpperDoor)
         {
             GameObject doorObject = GetObjectForTrigger(Triggers.EndDoor);
             if (doorObject != null)
             {
-                doorObject.GetComponent<MeshRenderer>().enabled = true;
-                doorObject.GetComponent<BoxCollider>().enabled = true;
+                doorObject.GetComponent<MeshRenderer>().enabled = !isOpen;
+                doorObject.GetComponent<BoxCollider>().enabled = !isOpen;
             }
         }
         else

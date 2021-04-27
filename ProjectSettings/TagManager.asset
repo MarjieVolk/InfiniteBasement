@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Stairs
   - Floor
+  - RoomAnimator
+  - Curtains
   layers:
   - Default
   - TransparentFX

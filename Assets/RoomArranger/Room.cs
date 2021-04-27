@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Room : RoomInterface
 {
@@ -18,8 +19,8 @@ public class Room : RoomInterface
 
     GameObject triggerContainer;
 
-    GameObject grayRoom;
-    GameObject bigCurtains;
+    Animator[] roomAnimators;
+    Animator[] bigCurtains;
 
     MusicSwitcher musicSwitcher;
 
@@ -39,8 +40,8 @@ public class Room : RoomInterface
 
         triggerContainer = GameObject.Find("Gameplay");
 
-        grayRoom = stairwellContents.transform.Find("GrayRoom").gameObject;
-        bigCurtains = furnitureContainer.transform.Find("BigCurtains").gameObject;
+        roomAnimators = GameObject.FindGameObjectsWithTag("RoomAnimator").Select(x => x.GetComponent<Animator>()).ToArray();
+        bigCurtains = GameObject.FindGameObjectsWithTag("Curtains").Select(x => x.GetComponent<Animator>()).ToArray();
 
         UnhighlightAllInteractableObjects();
         DisableAllTriggers();
@@ -142,8 +143,11 @@ public class Room : RoomInterface
         switch (triggerType)
         {
             case Triggers.EndDoor:
-                AmbientNoiseSwitcher.instance.PlayBackgroundNoise(BackgroundNoise.Outdoors);
                 PlayerController.instance.FadeToMenu();
+                if (AmbientNoiseSwitcher.instance != null)
+                {
+                    AmbientNoiseSwitcher.instance.PlayBackgroundNoise(BackgroundNoise.Outdoors);
+                }
                 break;
 
             case Triggers.OpenTheStartDoor:
@@ -152,8 +156,16 @@ public class Room : RoomInterface
                 break;
 
             case Triggers.Window:
-                bigCurtains.GetComponent<Animator>().SetTrigger("curtainsOpen");
-                grayRoom.GetComponent<Animator>().SetTrigger("loop1_clear");
+                foreach (Animator curtains in bigCurtains)
+                {
+                    curtains.SetTrigger("curtainsOpen");
+                }
+
+                foreach (Animator anim in roomAnimators)
+                {
+                    anim.SetTrigger("loop1_clear");
+                }
+
                 EnableTriggersOfType(Triggers.Gramophone);
                 break;
 
@@ -186,7 +198,22 @@ public class Room : RoomInterface
                     PlayerController.instance.MarkRoomAsCompleted();
                 }
                 break;
+            case Triggers.Phone:
+                SetTriggerIsActive(Triggers.EndDoor, true);
+                EnableTriggersOfType(Triggers.EndDoor);
 
+                //SetDoorOpen(false, false);
+
+                // TODO: Theoretically SetDoorOpen should make the exit door be closed,
+                // but it does not.  This is a replacement for that.  I made a separate 
+                // ClosedEditDoor object in the scene which I am turning on.
+                GameObject doorObject = GetObjectForTrigger(Triggers.EndDoor);
+                if (doorObject != null)
+                {
+                    doorObject.GetComponent<MeshRenderer>().enabled = true;
+                    doorObject.GetComponent<BoxCollider>().enabled = true;
+                }
+                break;
             default:
                 break;
         }
@@ -194,41 +221,47 @@ public class Room : RoomInterface
 
     override protected void ArrangeForRoomOne()
     {
+
         if (!hasStartDoorEverBeenClosed)
         {
             hasStartDoorEverBeenClosed = true;
             SetDoorOpen(false, true);
+            SetTriggerIsActive(Triggers.StartDoor, true);
         }
+        else
+        {
+            // If the start door is open, disable its trigger
+            SetTriggerIsActive(Triggers.StartDoor, false);
+        }
+
         EnableTriggersOfType(Triggers.Unknown);
         EnableTriggersOfType(Triggers.Window);
-        SetTriggerIsActive(Triggers.StartDoor, true);
-        AmbientNoiseSwitcher.instance.PlayBackgroundNoise(BackgroundNoise.Basement);
+
+        if (AmbientNoiseSwitcher.instance != null)
+        {
+            AmbientNoiseSwitcher.instance.PlayBackgroundNoise(BackgroundNoise.Basement);
+        }
     }
 
     override protected void ArrangeForRoomTwo()
     {
         musicSwitcher.PlayMusic(Music.Piano2);
         EnableTriggersOfType(Triggers.Sponge);
-        grayRoom.GetComponent<Animator>().SetTrigger("loop2_clear");
-        // TODO: Show/hide/move/adjust whatever items/state is needed for the current room.
+        foreach (Animator anim in roomAnimators)
+        {
+            anim.GetComponent<Animator>().SetTrigger("loop2_clear");
+        }
     }
 
     override protected void ArrangeForRoomThree()
     {
         musicSwitcher.PlayMusic(Music.Piano3);
         EnableTriggersOfType(Triggers.Phone);
-        SetTriggerIsActive(Triggers.EndDoor, true);
-        EnableTriggersOfType(Triggers.EndDoor);
 
-        GameObject doorObject = GetObjectForTrigger(Triggers.EndDoor);
-        if (doorObject != null)
+        foreach (Animator anim in roomAnimators)
         {
-            doorObject.GetComponent<MeshRenderer>().enabled = true;
-            doorObject.GetComponent<BoxCollider>().enabled = true;
+            anim.GetComponent<Animator>().SetTrigger("loop3_clear");
         }
-
-        grayRoom.GetComponent<Animator>().SetTrigger("loop3_clear");
-        // TODO: Show/hide/move/adjust whatever items/state is needed for the current room.
     }
 
     public void SetDoorOpen(bool isOpen, bool isUpperDoor)

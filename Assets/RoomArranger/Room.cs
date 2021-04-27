@@ -166,6 +166,7 @@ public class Room : RoomInterface
 
             case Triggers.Window:
                 TriggerAnimation("curtainsOpen", bigCurtains);
+                TriggerAnimation("loop1_clear", roomAnimators);
                 EnableTriggersOfType(Triggers.Gramophone);
                 break;
 
@@ -194,7 +195,20 @@ public class Room : RoomInterface
                 break;
 
             case Triggers.Phone:
-                OnRoomCompleted();
+                SetTriggerIsActive(Triggers.EndDoor, true);
+                EnableTriggersOfType(Triggers.EndDoor);
+
+                //SetDoorOpen(false, false);
+
+                // TODO: Theoretically SetDoorOpen should make the exit door be closed,
+                // but it does not.  This is a replacement for that.  I made a separate 
+                // ClosedExitDoor object in the scene which I am turning on.
+                GameObject doorObject = GetObjectForTrigger(Triggers.EndDoor);
+                if (doorObject != null)
+                {
+                    doorObject.GetComponent<MeshRenderer>().enabled = true;
+                    doorObject.GetComponent<BoxCollider>().enabled = true;
+                }
                 break;
 
             default:
@@ -264,33 +278,18 @@ public class Room : RoomInterface
     override protected void ArrangeForRoomTwo()
     {
         EnableTriggersOfType(Triggers.Sponge);
-        TriggerAnimation("loop1_clear", roomAnimators);
+        TriggerAnimation("loop2_clear", roomAnimators);
     }
 
     override protected void ArrangeForRoomThree()
     {
         EnableTriggersOfType(Triggers.Phone);
-        TriggerAnimation("loop2_clear", roomAnimators);
+        TriggerAnimation("loop3_clear", roomAnimators);
     }
 
     override protected void ArrangeForRoomFour()
     {
-        TriggerAnimation("loop3_clear", roomAnimators);
 
-        SetTriggerIsActive(Triggers.EndDoor, true);
-        EnableTriggersOfType(Triggers.EndDoor);
-
-        //SetDoorOpen(false, false);
-
-        // TODO: Theoretically SetDoorOpen should make the exit door be closed,
-        // but it does not.  This is a replacement for that.  I made a separate 
-        // ClosedExitDoor object in the scene which I am turning on.
-        GameObject doorObject = GetObjectForTrigger(Triggers.EndDoor);
-        if (doorObject != null)
-        {
-            doorObject.GetComponent<MeshRenderer>().enabled = true;
-            doorObject.GetComponent<BoxCollider>().enabled = true;
-        }
     }
 
     public void SetDoorOpen(bool isOpen, bool isUpperDoor)

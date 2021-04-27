@@ -207,6 +207,7 @@ public class Room : RoomInterface
     {
         musicSwitcher.PlayMusic(Music.Piano2);
         EnableTriggersOfType(Triggers.Sponge);
+        grayRoom.GetComponent<Animator>().SetTrigger("loop2_clear");
         // TODO: Show/hide/move/adjust whatever items/state is needed for the current room.
     }
 
@@ -214,14 +215,9 @@ public class Room : RoomInterface
     {
         musicSwitcher.PlayMusic(Music.Piano3);
         EnableTriggersOfType(Triggers.Phone);
-        // TODO: Show/hide/move/adjust whatever items/state is needed for the current room.
-    }
-
-    override protected void ArrangeForRoomFour()
-    {
-        // TODO: Show/hide/move/adjust whatever items/state is needed for the current room.
-        SetDoorOpen(false, false);
         SetTriggerIsActive(Triggers.EndDoor, true);
+        grayRoom.GetComponent<Animator>().SetTrigger("loop3_clear");
+        // TODO: Show/hide/move/adjust whatever items/state is needed for the current room.
     }
 
     public void SetDoorOpen(bool isOpen, bool isUpperDoor)
@@ -239,6 +235,11 @@ public class Room : RoomInterface
 
     // --- Unused stuff --- //
 
+
+    override protected void ArrangeForRoomFour()
+    {
+        // Unused.
+    }
 
     override protected void ArrangeForRoomFive()
     {

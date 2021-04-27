@@ -64,13 +64,6 @@ abstract public class RoomArranger : MonoBehaviour
 
     abstract protected void UpdateForNewRoom(RoomIteration enteredIteration, bool isUpperDoorway, Vector3 displacementPastDoor);
 
-    public void OnRoomCompleted()
-    {
-        Debug.Log("OnRoomCompleted: " + currentRoom.iteration);
-
-        currentRoom.isCompleted = true;
-    }
-
     public void OnTrigger(Triggers triggerType)
     {
         currentRoom.OnTrigger(triggerType);

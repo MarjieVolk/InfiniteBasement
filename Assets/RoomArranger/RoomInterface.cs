@@ -93,7 +93,7 @@ public abstract class RoomInterface : MonoBehaviour
     protected GameObject epilogContainer;
     // Wrapper around main-room content. For ease of showing/hiding it.
     protected GameObject mainRoomContainer;
-    
+
     virtual public void Arrange(RoomIteration iteration)
     {
         Debug.Log("RoomInterface.Arrange");
@@ -206,6 +206,8 @@ public abstract class RoomInterface : MonoBehaviour
             mainRoomContainer.SetActive(false);
         }
     }
+
+    abstract protected void OnRoomCompleted();
 
     abstract public void OnTrigger(Triggers triggerType);
 

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    const float WEB_BUILD_MOUSE_SENSITIVITY_MULTIPLIER = 0.1f;
+    const float WEB_BUILD_MOUSE_SENSITIVITY_MULTIPLIER = 0.2f;
     const float IN_EDITOR_MOUSE_SENSITIVITY_MULTIPLIER = 1;
 
     public static PlayerController instance;
@@ -233,15 +233,6 @@ public class PlayerController : MonoBehaviour
         characterController.enabled = true;
 
         hasMovedSinceTeleporting = false;
-    }
-
-
-    // TODO: Call the following from triggers?
-
-
-    public void MarkRoomAsCompleted()
-    {
-        RoomArranger.instance.OnRoomCompleted();
     }
 
     public void OnRoomExited(bool isUpperDoorway, Vector3 displacementPastDoor)

@@ -143,6 +143,8 @@ public class Room : RoomInterface
         }
     }
 
+    int cleanedPictureCount = 0;
+
     override public void OnTrigger(Triggers triggerType)
     {
         switch (triggerType)
@@ -161,48 +163,32 @@ public class Room : RoomInterface
                 break;
 
             case Triggers.Window:
-                foreach (Animator curtains in bigCurtains)
-                {
-                    curtains.SetTrigger("curtainsOpen");
-                }
-
-                foreach (Animator anim in roomAnimators)
-                {
-                    anim.SetTrigger("loop1_clear");
-                }
-
+                TriggerAnimation("curtainsOpen", bigCurtains);
+                TriggerAnimation("loop1_clear", roomAnimators);
                 EnableTriggersOfType(Triggers.Gramophone);
                 break;
 
             case Triggers.Gramophone:
                 if (iteration == RoomIteration.One)
                 {
-                    musicSwitcher.PlayMusic(Music.Piano1);
-                    PlayerController.instance.MarkRoomAsCompleted();
+                    OnRoomCompleted();
                 }
                 break;
 
             case Triggers.Sponge:
-                EnableTriggersOfType(Triggers.Picture3);
-                break;
-
-            case Triggers.Picture3:
                 EnableTriggersOfType(Triggers.Picture1);
+                EnableTriggersOfType(Triggers.Picture2);
+                EnableTriggersOfType(Triggers.Picture3);
                 Destroy(GetObjectForTrigger(Triggers.Sponge));
                 Destroy(GetTriggerObjectForTrigger(Triggers.Sponge));
                 break;
 
             case Triggers.Picture1:
-                EnableTriggersOfType(Triggers.Picture2);
+            case Triggers.Picture2:
+            case Triggers.Picture3:
+                OnPictureCleaned();
                 break;
 
-            case Triggers.Picture2:
-                // TODO: Remove me after setting up room completion here.
-                if (iteration == RoomIteration.Two)
-                {
-                    PlayerController.instance.MarkRoomAsCompleted();
-                }
-                break;
             case Triggers.Phone:
                 SetTriggerIsActive(Triggers.EndDoor, true);
                 EnableTriggersOfType(Triggers.EndDoor);
@@ -211,7 +197,7 @@ public class Room : RoomInterface
 
                 // TODO: Theoretically SetDoorOpen should make the exit door be closed,
                 // but it does not.  This is a replacement for that.  I made a separate 
-                // ClosedEditDoor object in the scene which I am turning on.
+                // ClosedExitDoor object in the scene which I am turning on.
                 GameObject doorObject = GetObjectForTrigger(Triggers.EndDoor);
                 if (doorObject != null)
                 {
@@ -219,7 +205,42 @@ public class Room : RoomInterface
                     doorObject.GetComponent<BoxCollider>().enabled = true;
                 }
                 break;
+
             default:
+                break;
+        }
+    }
+
+    void OnPictureCleaned()
+    {
+        cleanedPictureCount++;
+        if (iteration == RoomIteration.Two && cleanedPictureCount == 3 && !isCompleted)
+        {
+            OnRoomCompleted();
+        }
+    }
+
+    override protected void OnRoomCompleted()
+    {
+        Debug.Log("OnRoomCompleted: " + iteration);
+
+        isCompleted = true;
+
+        switch (iteration)
+        {
+            case RoomIteration.One:
+                musicSwitcher.PlayMusic(Music.Piano1);
+                break;
+            case RoomIteration.Two:
+                musicSwitcher.PlayMusic(Music.Piano2);
+                TriggerAnimation("loop2_clear", roomAnimators);
+                break;
+            case RoomIteration.Three:
+                musicSwitcher.PlayMusic(Music.Piano3);
+                TriggerAnimation("loop3_clear", roomAnimators);
+                break;
+            default:
+                Debug.LogError("Unrecognized room iteration: " + iteration);
                 break;
         }
     }
@@ -250,23 +271,12 @@ public class Room : RoomInterface
 
     override protected void ArrangeForRoomTwo()
     {
-        musicSwitcher.PlayMusic(Music.Piano2);
         EnableTriggersOfType(Triggers.Sponge);
-        foreach (Animator anim in roomAnimators)
-        {
-            anim.GetComponent<Animator>().SetTrigger("loop2_clear");
-        }
     }
 
     override protected void ArrangeForRoomThree()
     {
-        musicSwitcher.PlayMusic(Music.Piano3);
         EnableTriggersOfType(Triggers.Phone);
-
-        foreach (Animator anim in roomAnimators)
-        {
-            anim.GetComponent<Animator>().SetTrigger("loop3_clear");
-        }
     }
 
     public void SetDoorOpen(bool isOpen, bool isUpperDoor)
@@ -281,6 +291,13 @@ public class Room : RoomInterface
         container.transform.Find("Door_1").gameObject.transform.rotation = Quaternion.Euler(0, rotationY, 0);
     }
 
+    public void TriggerAnimation(string animationName, Animator[] animatorCopies)
+    {
+        foreach (Animator animator in animatorCopies)
+        {
+            animator.SetTrigger(animationName);
+        }
+    }
 
     // --- Unused stuff --- //
 

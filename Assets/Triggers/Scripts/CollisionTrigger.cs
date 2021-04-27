@@ -15,8 +15,6 @@ public class CollisionTrigger : DefaultTrigger
     public Collider triggerTarget;
 
     void OnTriggerEnter(Collider collision) {
-        // TODO: Sorry Steven! Levi broke this. I was having trouble getting the prefab reference to work, I guess? Please revert if you want!
-        //if (collision != triggerTarget) {
         if (collision.tag != "Player") {
             return;
         }

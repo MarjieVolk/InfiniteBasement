@@ -42,6 +42,7 @@ abstract public class RoomArranger : MonoBehaviour
         RoomIteration nextIteration;
         if (!isUpperDoorway && currentRoom.isCompleted)
         {
+            currentRoom.isCompleted = false;
             nextIteration = GetNextRoomIteration(previousIteration);
         }
         else
@@ -58,7 +59,6 @@ abstract public class RoomArranger : MonoBehaviour
         UpdateForNewRoom(nextIteration, isUpperDoorway, displacementPastDoor);
 
         // Arrange the current room.
-        currentRoom.isCompleted = false;
         currentRoom.Arrange(nextIteration);
     }
 

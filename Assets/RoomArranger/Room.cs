@@ -43,6 +43,7 @@ public class Room : RoomInterface
         bigCurtains = furnitureContainer.transform.Find("BigCurtains").gameObject;
 
         UnhighlightAllInteractableObjects();
+        DisableAllTriggers();
     }
 
     override public GameObject GetObjectForTrigger(Triggers triggerType)
@@ -144,6 +145,11 @@ public class Room : RoomInterface
                 QuitToMenu();
                 break;
 
+            case Triggers.OpenTheStartDoor:
+                Debug.Log("foo");
+                SetDoorOpen(true, true);
+                break;
+
             case Triggers.Window:
                 if (iteration == RoomIteration.One)
                 {
@@ -154,16 +160,28 @@ public class Room : RoomInterface
                 break;
 
             case Triggers.Gramophone:
-                if (iteration == RoomIteration.One)
-                {
-                    musicSwitcher.PlayMusic(Music.Piano1);
-                    PlayerController.instance.MarkRoomAsCompleted();
-                }
+                musicSwitcher.PlayMusic(Music.Piano1);
+                // TODO: Remove me after setting up room completion here.
+                EnableTriggersOfType(Triggers.Sponge);
                 break;
 
-            case Triggers.OpenTheStartDoor:
-                Debug.Log("foo");
-                SetDoorOpen(true, true);
+            case Triggers.Sponge:
+                EnableTriggersOfType(Triggers.Picture3);
+                Destroy(GetObjectForTrigger(Triggers.Sponge));
+                Destroy(GetTriggerObjectForTrigger(Triggers.Sponge));
+                break;
+
+            case Triggers.Picture3:
+                EnableTriggersOfType(Triggers.Picture1);
+                break;
+
+            case Triggers.Picture1:
+                EnableTriggersOfType(Triggers.Picture2);
+                break;
+
+            case Triggers.Picture2:
+                // TODO: Remove me after setting up room completion here.
+                EnableTriggersOfType(Triggers.Phone);
                 break;
 
             default:
@@ -178,7 +196,6 @@ public class Room : RoomInterface
             hasStartDoorEverBeenClosed = true;
             SetDoorOpen(false, true);
         }
-        DisableAllTriggers();
         EnableTriggersOfType(Triggers.Unknown);
         EnableTriggersOfType(Triggers.Window);
         SetTriggerIsActive(Triggers.StartDoor, true);
@@ -187,12 +204,14 @@ public class Room : RoomInterface
     override protected void ArrangeForRoomTwo()
     {
         musicSwitcher.PlayMusic(Music.Piano2);
+        EnableTriggersOfType(Triggers.Sponge);
         // TODO: Show/hide/move/adjust whatever items/state is needed for the current room.
     }
 
     override protected void ArrangeForRoomThree()
     {
         musicSwitcher.PlayMusic(Music.Piano3);
+        EnableTriggersOfType(Triggers.Phone);
         // TODO: Show/hide/move/adjust whatever items/state is needed for the current room.
     }
 

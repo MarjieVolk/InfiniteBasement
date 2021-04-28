@@ -13,8 +13,7 @@ public abstract class DefaultTrigger : Trigger
     [Tooltip("If true, this trigger will only ever trigger once.")]
     public bool triggerOnlyOnce = false;
 
-    [Tooltip(
-        "Required: The component that will play the audio.")]
+    [Tooltip("Required: The component that will play the audio.")]
     public AudioSource audioPlayer = null;
 
     [Tooltip(
@@ -26,12 +25,15 @@ public abstract class DefaultTrigger : Trigger
         "If present, this trigger will play these audio clips when triggered. On each use, it will"
         + " move to the next item in the list.")]
     public AudioClip[] playAudioOnDisabled = {};
+    
+    public AudioClip[] playAudioOnCompletedRoomOne = new AudioClip[0];
+    public AudioClip[] playAudioOnCompletedRoomTwo = new AudioClip[0];
+    public AudioClip[] playAudioOnCompletedRoomThree = new AudioClip[0];
 
     [Tooltip("Whether the player can interact with this.")]
     public bool isEnabled = true;
 
-    [Tooltip(
-        "Define this if you want the Room to be able to identify and react to this trigger.")]
+    [Tooltip("Define this if you want the Room to be able to identify and react to this trigger.")]
     public Triggers triggerType = Triggers.Unknown;
 
     /** If true, this trigger has already been triggered before. */
@@ -42,12 +44,38 @@ public abstract class DefaultTrigger : Trigger
 
     /** Actually run the trigger logic. */
     override protected void OnTrigger() {
-        if (triggerOnlyOnce && triggered) {
-            Debug.Log("DefaultTrigger.OnTrigger (" + triggerType + "): Ignored because of triggerOnlyOnce.");
+        if (triggerOnlyOnce && triggered)
+        {
+            AudioClip[] clips;
+
+            // Have to do this nonsense cause Unity editor doesn't have support for
+            // editing dictionaries or 2D arrays.  I tried writing a custom property
+            // drawer but decided it wasn't worth the effort after an hour or so.
+            switch (RoomArranger.instance.currentRoom.iteration)
+            {
+                case RoomIteration.One:
+                    clips = playAudioOnCompletedRoomOne;
+                    break;
+                case RoomIteration.Two:
+                    clips = playAudioOnCompletedRoomTwo;
+                    break;
+                case RoomIteration.Three:
+                    clips = playAudioOnCompletedRoomThree;
+                    break;
+                default:
+                    clips = new AudioClip[0];
+                    break;
+            }
+
+            if (clips.Length > 0)
+            {
+                int clipIndex = Mathf.Clamp(Mathf.FloorToInt(Random.value * clips.Length), 0, clips.Length - 1);
+                audioPlayer.clip = clips[clipIndex];
+                audioPlayer.Play();
+            }
+
             return;
         }
-
-        Debug.Log("DefaultTrigger.OnTrigger (" + triggerType + ")");
 
         if (isEnabled && playAudioOnTrigger) {
             audioPlayer.clip = playAudioOnTrigger;

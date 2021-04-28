@@ -11,6 +11,8 @@ abstract public class RoomArranger : MonoBehaviour
     public Vector3 rotationBetweenDoors;
     public Vector3 startPosition;
 
+    public AudioClip phoneRingClip;
+
     protected GameObject currentRoomObject;
     public RoomInterface currentRoom;
 

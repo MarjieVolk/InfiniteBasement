@@ -43,7 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527394e03050c094d9c2660638f4faa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomPrefab: {fileID: 3921818303814533586, guid: bb9d0a2be2793754498eab132a2491d1, type: 3}
-  translationBetweenDoors: {x: 0, y: -3.52, z: 0}
+  roomPrefab: {fileID: 2695024434232134713, guid: d3f58bb8b906100408c0047c70eecde1, type: 3}
+  translationBetweenDoors: {x: 0.07943815, y: -3.397576, z: 1.1260245}
   rotationBetweenDoors: {x: 0, y: 180, z: 0}
-  startPosition: {x: 0.375, y: 0, z: -0.5}
+  startPosition: {x: 0, y: 0, z: 0}
+  phoneRingClip: {fileID: 8300000, guid: 55af2dc2b5de4e94bb56e229cd0e6ef1, type: 3}
+  currentRoom: {fileID: 0}

@@ -282,13 +282,12 @@ public class Room : RoomInterface
 
     override protected void ArrangeForRoomThree()
     {
+        AudioSource phoneAudioSource = GetTriggerObjectForTrigger(Triggers.Phone).GetComponent<AudioSource>();
+        phoneAudioSource.clip = RoomArranger.instance.phoneRingClip;
+        phoneAudioSource.Play();
+
         EnableTriggersOfType(Triggers.Phone);
         TriggerAnimation("loop3_clear", roomAnimators);
-    }
-
-    override protected void ArrangeForRoomFour()
-    {
-
     }
 
     public void SetDoorOpen(bool isOpen, bool isUpperDoor)
@@ -331,6 +330,11 @@ public class Room : RoomInterface
     }
 
     // --- Unused stuff --- //
+
+    override protected void ArrangeForRoomFour()
+    {
+
+    }
 
     override protected void ArrangeForRoomFive()
     {

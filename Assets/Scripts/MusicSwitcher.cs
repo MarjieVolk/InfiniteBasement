@@ -24,7 +24,7 @@ public class MusicSwitcher : MonoBehaviour
     AudioSource previousSource;
     AudioSource currentSource;
 
-    public float crossFadeDurationSec = 1;
+    public float crossFadeDurationSec = 5;
 
     void Start()
     {
@@ -39,7 +39,7 @@ public class MusicSwitcher : MonoBehaviour
         PlayMusic(GetNextType(currentType));
     }
 
-    public void PlayMusic(Music type)
+    void PlayMusic(Music type)
     {
         if (type == currentType)
         {

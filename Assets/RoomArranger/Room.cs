@@ -229,20 +229,18 @@ public class Room : RoomInterface
 
         isCompleted = true;
 
+        musicSwitcher.IncrementMusic();
+
         switch (iteration)
         {
             case RoomIteration.One:
-                musicSwitcher.PlayMusic(Music.Piano1);
                 break;
             case RoomIteration.Two:
-                musicSwitcher.PlayMusic(Music.Piano2);
                 break;
             case RoomIteration.Three:
-                musicSwitcher.PlayMusic(Music.Piano3);
                 SetDoorOpen(false, false);
                 break;
             case RoomIteration.Four:
-                musicSwitcher.PlayMusic(Music.Piano4);
                 break;
             default:
                 Debug.LogError("Unrecognized room iteration: " + iteration);

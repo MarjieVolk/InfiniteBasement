@@ -1274,6 +1274,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 437864653192463929, guid: 65c657b693acb904994474d965f9d557, type: 3}
+      propertyPath: crossFadeDurationSec
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1840650201628849717, guid: 65c657b693acb904994474d965f9d557, type: 3}
       propertyPath: m_Name
       value: Gameplay

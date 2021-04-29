@@ -7,19 +7,38 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wallpaper_C - Copy
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Name: CurtainHighlight
+  m_Shader: {fileID: -6465566751694194690, guid: f57ce896e28b4dc4a8890ac0c6e5e5db, type: 3}
   m_ShaderKeywords: _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_3855afc88fcd4fe3b3f9f851261b3db7:
+        m_Texture: {fileID: 2800000, guid: ec80e9eea0b652045b81d5b55afa8371, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_4052057583174bd39d59bc48f3a38a28:
+        m_Texture: {fileID: 2800000, guid: 98a01bfe2bf02fa409dbed69002ad274, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_E902F5F8:
+        m_Texture: {fileID: 2800000, guid: edf292a3d3e10f040b09e4553c5b0af0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_a6e50a18d82b42ce84fd32be91168de7:
+        m_Texture: {fileID: 2800000, guid: 98a01bfe2bf02fa409dbed69002ad274, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_ac70c769c5b842768c54166d426bab47:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: edf292a3d3e10f040b09e4553c5b0af0, type: 3}
         m_Scale: {x: 0.5, y: 0.5}
@@ -77,6 +96,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_797593e703b74bce96f1c39cca47ea2d: -0.1
+    - Vector1_B53F5159: 3
+    - Vector1_E9EECE8D: 1.5
+    - Vector1_add599203af44212a5ee8403cef05234: 236
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -105,7 +128,9 @@ Material:
     - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - hide: 1
     m_Colors:
+    - Color_2ECCF40C: {r: 0, g: 1.2313726, b: 1.4980392, a: 0}
     - _BaseColor: {r: 0.3773585, g: 0.27293223, b: 0.32143906, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

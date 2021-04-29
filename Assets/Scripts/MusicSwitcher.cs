@@ -54,7 +54,7 @@ public class MusicSwitcher : MonoBehaviour
 
         if (previousType != Music.None)
         {
-            // Cross fade.}
+            // Cross fade.
             StartCoroutine(FadeAudioSource.StartFade(previousSource, crossFadeDurationSec, 0));
             StartCoroutine(FadeAudioSource.StartFade(currentSource, crossFadeDurationSec, 1));
         }

@@ -21,10 +21,10 @@ public class Room : RoomInterface
 
     GameObject triggerContainer;
 
-    Animator[] roomAnimators;
     Animator[] bigCurtains;
 
     MusicSwitcher musicSwitcher;
+    LightSwitcher lightSwitcher;
 
     static bool hasStartDoorEverBeenClosed = false;
 
@@ -35,6 +35,7 @@ public class Room : RoomInterface
         furnitureContainer = stairwellContents.transform.Find("Furniture").gameObject;
         houseContainer = stairwellContents.transform.Find("House").gameObject;
         musicSwitcher = GameObject.Find("Ambient Sound").transform.GetComponent<MusicSwitcher>();
+        lightSwitcher = GameObject.Find("RoomArrangerWithTeleport").GetComponent<LightSwitcher>();
 
         upperRoomCopyStairwellContents = GameObject.Find("DummyRoomTop");
         lowerRoomCopyStairwellContents = GameObject.Find("DummyRoomBottom");
@@ -42,7 +43,6 @@ public class Room : RoomInterface
 
         triggerContainer = GameObject.Find("Gameplay");
 
-        roomAnimators = GameObject.FindGameObjectsWithTag("RoomAnimator").Select(x => x.GetComponent<Animator>()).ToArray();
         bigCurtains = GameObject.FindGameObjectsWithTag("Curtains").Select(x => x.GetComponent<Animator>()).ToArray();
 
         UnhighlightAllInteractableObjects();
@@ -178,7 +178,7 @@ public class Room : RoomInterface
 
             case Triggers.Window:
                 TriggerAnimation("curtainsOpen", bigCurtains);
-                TriggerAnimation("loop1_clear", roomAnimators);
+                lightSwitcher.IncrementLight();
                 EnableTriggersOfType(Triggers.Gramophone);
                 break;
 
@@ -275,7 +275,7 @@ public class Room : RoomInterface
     override protected void ArrangeForRoomTwo()
     {
         EnableTriggersOfType(Triggers.Sponge);
-        TriggerAnimation("loop2_clear", roomAnimators);
+        lightSwitcher.IncrementLight();
     }
 
     override protected void ArrangeForRoomThree()
@@ -285,7 +285,7 @@ public class Room : RoomInterface
         phoneAudioSource.Play();
 
         EnableTriggersOfType(Triggers.Phone);
-        TriggerAnimation("loop3_clear", roomAnimators);
+        lightSwitcher.IncrementLight();
     }
 
     public void SetDoorOpen(bool isOpen, bool isUpperDoor)

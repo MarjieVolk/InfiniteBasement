@@ -744,6 +744,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3463037435956638800, guid: 47468005a1e5f954baefde74cba2f71c, type: 3}
+      propertyPath: lowerDoorRenderCamera
+      value: 
+      objectReference: {fileID: 334879996}
     - target: {fileID: 3463037435956638801, guid: 47468005a1e5f954baefde74cba2f71c, type: 3}
       propertyPath: m_RootOrder
       value: 4

@@ -1,9 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomArrangerWithTeleport : RoomArranger
 {
+    public static void GetTeleportTransform(bool isUpperDoorway, Vector3 displacementPastDoor, out Vector3 rotation, out Vector3 translation)
+    {
+        Vector3 offsetForDisplacementPastDoor = Quaternion.Euler(instance.rotationBetweenDoors) * displacementPastDoor;
+        if (isUpperDoorway)
+        {
+            rotation = -instance.rotationBetweenDoors;
+            translation = instance.translationBetweenDoors + offsetForDisplacementPastDoor;
+        }
+        else
+        {
+            rotation = instance.rotationBetweenDoors;
+            translation = -instance.translationBetweenDoors + offsetForDisplacementPastDoor;
+        }
+    }
+
     override protected void UpdateForNewRoom(RoomIteration enteredIteration, bool isUpperDoorway, Vector3 displacementPastDoor)
     {
         // Teleport player.
@@ -11,17 +24,7 @@ public class RoomArrangerWithTeleport : RoomArranger
         Vector3 translation;
         if (enteredIteration != RoomIteration.Epilog)
         {
-            Vector3 offsetForDisplacementPastDoor = Quaternion.Euler(rotationBetweenDoors) * displacementPastDoor;
-            if (isUpperDoorway)
-            {
-                rotation = -rotationBetweenDoors;
-                translation = translationBetweenDoors + offsetForDisplacementPastDoor;
-            }
-            else
-            {
-                rotation = rotationBetweenDoors;
-                translation = -translationBetweenDoors + offsetForDisplacementPastDoor;
-            }
+            GetTeleportTransform(isUpperDoorway, displacementPastDoor, out rotation, out translation);
         }
         else
         {

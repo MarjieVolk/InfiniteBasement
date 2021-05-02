@@ -5,6 +5,8 @@ using UnityEngine;
 /** A trigger that activates when the player exits the room, up or down. */
 public class ExitRoomTrigger : CollisionTrigger
 {
+    public static ExitRoomTrigger instance { get; private set; }
+
     [Tooltip("Set to false if this corresponds to the player walking downstairs.")]
     public bool isUpperDoorway = true;
 
@@ -18,6 +20,7 @@ public class ExitRoomTrigger : CollisionTrigger
 
     void Start()
     {
+        instance = this;
         triggerOnlyOnce = false;
     }
 
@@ -37,9 +40,14 @@ public class ExitRoomTrigger : CollisionTrigger
             return;
         }
         base.OnTrigger();
+               
+        PlayerController.instance.OnRoomExited(isUpperDoorway, GetDisplacementPastDoor());
+    }
+
+    public Vector3 GetDisplacementPastDoor()
+    {
         Vector3 displacementPastDoor = PlayerController.instance.transform.position + PlayerController.instance.GetRadius() * outwardNormal - transform.position;
         displacementPastDoor.y = 0;
-        
-        PlayerController.instance.OnRoomExited(isUpperDoorway, displacementPastDoor);
+        return displacementPastDoor;
     }
 }

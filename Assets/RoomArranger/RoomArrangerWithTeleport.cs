@@ -8,12 +8,12 @@ public class RoomArrangerWithTeleport : RoomArranger
         if (isUpperDoorway)
         {
             rotation = -instance.rotationBetweenDoors;
-            translation = instance.translationBetweenDoors + offsetForDisplacementPastDoor;
+            translation = instance.translationBetweenDoors + (offsetForDisplacementPastDoor * 2);
         }
         else
         {
             rotation = instance.rotationBetweenDoors;
-            translation = -instance.translationBetweenDoors + offsetForDisplacementPastDoor;
+            translation = -instance.translationBetweenDoors + (offsetForDisplacementPastDoor * 2);
         }
     }
 

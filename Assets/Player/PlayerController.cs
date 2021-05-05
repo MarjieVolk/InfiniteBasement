@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
 
     public GameObject fpCamera;
+    public GameObject lowerDoorRenderCamera;
+
     public float speedForward = 1.5f;
     public float speedBackward = 0.75f;
     public float speedSideways = 0.75f;
@@ -81,6 +83,12 @@ public class PlayerController : MonoBehaviour
         Rotate();
         HandleFootsteps();
         HandleCursorLock();
+
+        Vector3 rotation;
+        Vector3 translation;
+        RoomArrangerWithTeleport.GetTeleportTransform(false, ExitRoomTrigger.instance.GetDisplacementPastDoor(), out rotation, out translation);
+        lowerDoorRenderCamera.transform.rotation = Quaternion.Euler(rotation) * fpCamera.transform.rotation;
+        lowerDoorRenderCamera.transform.position = fpCamera.transform.position + translation;
 
         if (isPressingForward || isPressingBackward || isPressingSideways)
         {

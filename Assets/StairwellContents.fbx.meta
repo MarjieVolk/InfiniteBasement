@@ -6,15 +6,6 @@ ModelImporter:
   - first:
       74: 2928657138710246468
     second: CurtainsOpen
-  - first:
-      74: -4943096225228586379
-    second: GrayRoomFade
-  - first:
-      74: -2107061440267810054
-    second: GrayRoomFade1
-  - first:
-      74: -5813948192182257932
-    second: GrayRoomFade2
   externalObjects: {}
   materials:
     materialImportMode: 2
